@@ -1,0 +1,590 @@
+html *
+{  
+   font-family: Helvetica, arial !important;
+   font-weight: normal;
+   -webkit-font-smoothing: antialiased;
+}
+
+body#landingbody {
+	/*Scalable background image that doesn't stretch when window 
+	is non-standard aspect ratio*/
+	background: url('images/background.svg') no-repeat center center fixed;
+	background-color: #f2e6d9;
+	background-size: cover;
+	background-repeat: no-repeat;
+	font-family: helvetica;
+
+	margin: 0px;
+}
+
+body#normal  {
+	/*Scalable background image that doesn't stretch when window 
+	is non-standard aspect ratio*/
+	background: url('images/background.svg') no-repeat center center fixed;
+	/*background-color: #ffe6b3;*/
+	background-color: #f2e6d9;
+	background-size: cover;
+	background-repeat: no-repeat;
+	font-family: helvetica;
+	font-weight: lighter;
+	margin: 0px;
+}
+
+/*Root navigation class, #landing and #normal are specifics*/
+.navigation {
+	line-height: 50px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	width: 100%;
+	min-width: 600px;
+	height: 50px;	
+}
+
+
+.navigation#landingnav {
+	/*nothing*/
+}
+
+.navigation#normalnav {
+	/*shadow*/
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	background-color: #6fdc6f; 
+}
+
+.home {
+	float: left;
+	height: 50px;
+}
+
+.home img {
+	width: 100px;
+	height: 50px;
+	vertical-align: middle;
+}
+
+/*text that accompanies image*/
+.home a {
+	font-size: 14px;
+	line-height: 50px;
+	display: inline;
+	vertical-align: middle;
+	text-decoration: none;
+}
+
+.aboutsocial {
+	padding-left: 10px;
+	padding-right: 10px;
+	float: right;
+	height: 50px;
+	line-height: 50px;
+}
+
+.aboutsocial a {
+	height: 50px;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 14px;
+	line-height: 50px;
+	display: inline;
+	vertical-align: middle;
+	text-decoration: none;
+}
+
+#normalaboutsocial a {
+	color: #FFFFFF;
+}
+
+#normalhome a {
+	color: #FFFFFF;
+}
+
+#landinghome a {
+	color: #595959; 
+}
+
+#aboutsociallanding a {
+	color: #595959; 
+}
+
+.aboutsocial a:hover {
+	background-color: #2db92d;
+}
+
+
+.undernav {
+	/*the navigation bar is transparent on the landing page, hence the 0 margin*/
+	margin-top: 0px;
+}
+
+#undernavnormal {
+	/*the navigation bar is transparent on the landing page, hence the 0 margin*/
+	margin-top: 50px;
+}
+
+#title {
+	width: 350px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#title h1 {
+	text-align: center;
+	margin: 0;
+	font-size: 83px;
+}
+
+#title h3 {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	font-size: 24px;
+	letter-spacing: 7px;
+}
+
+
+.footer_landing {
+
+	color: #595959;
+	height:50px;
+	position: fixed;
+	width:100%;
+	bottom: 0;
+}
+
+.footer_normal {
+	box-shadow: 6px 4px 20px 6px rgba(0, 0, 0, 0.2), 6px 5px 20px 6px rgba(0, 0, 0, 0.19);
+	margin-top: 50px;
+	color: #FFFFFF;
+	height:50px;
+	position: fixed;
+	width:100%;
+	bottom: 0;
+    border-top: 2px solid #FFFFFF;
+    background-color: #6fdc6f;
+}
+
+.footer_normal #subject {
+	padding-left: 10px;
+	float: left;
+}
+
+.footer_normal #name {
+	padding-right: 10px;
+	float: right;
+}
+
+.footer_landing #subject {
+	padding-left: 10px;
+	float: left;
+}
+
+.footer_landing #name {
+	padding-right: 10px;
+	float: right;
+}
+
+/*this is the container for the main content on the normal pages, not landing*/
+.contentdivider {
+	overflow:hidden;
+	width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px 0px 0px 0px;
+}
+
+.contentcell {
+	border-radius: 10px;
+	background-color: #FFFFFF;
+	padding: 0px;
+	width: 896px;
+	margin-top: 5px;
+	border: 2px solid #FFFFFF;
+	/*box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.19);*/
+
+}
+
+#pageheadings {
+	background-image: url('images/heading_banner_final2.svg');
+	background-color:   #6fdc6f;
+	border-bottom: 2px solid #FFFFFF;
+	border-left: 2px solid #FFFFFF;
+	border-right: 2px solid #FFFFFF;
+	/*width accounts for the border width ergo 100% can't be used*/
+	width: 896px;
+	height: 140px;
+	line-height: 100%;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	
+}
+
+#pageheadings h1 {
+	font-size: 30px;
+	margin: 0px;
+	padding-top: 28px;
+	color: #FFFFFF;
+	vertical-align: top;
+	letter-spacing: 5px;
+	text-align: center;
+ 	text-transform: uppercase;
+ 	/*text-shadow: #2c2c2c 3px 3px 5px;*/
+}
+
+emp#location {
+	color: #ffe6b3;
+}
+
+emp#information {
+	color: #ffe6b3;
+}
+
+.subcontent {
+	border-radius: 10px 10px 0px 0px;
+	background-color: #ffffff;
+}
+
+#locationmap {
+	width: 100%;
+	height: 550px;
+}
+
+.rightindividual {
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
+	width: 400px;
+	background-color: #FFFFFF;
+	height: 400px;
+
+}
+#parkinfotable {
+	font-size: 12px;
+	color: #595959;
+	width: 100%;
+	padding-bottom: 5px;
+}
+
+#parkinfotable td {
+	width: 0px;
+	padding: 10px 10px 10px 10px;
+	border-right: 0px;
+}
+
+#parkinfotable tr:nth-child(even) {
+	background-color: #f2f2f2
+}
+
+.infoheading {
+
+}
+
+
+#tableresults {
+	font-size: 12px;
+	width: 100%;
+	text-align: left;
+	color: #595959;
+}
+
+#tableresults td {
+	padding: 8px 8px 8px 8px;
+}
+
+#tableresults tr:nth-child(even) {
+	background-color: #f2f2f2
+}
+
+.userreview {
+	border-radius: 15px;
+	margin: 10px 10px 10px 10px;
+	padding: 10px 10px 10px 10px;
+	width: calc(100% - 45px);
+	background-color: #6fdc6f;
+	color: #FFFFFF;
+	border: 2px solid;
+	overflow: auto;
+}
+
+
+.userreview .userimage {
+	background: url('images/profile_img.png') no-repeat;
+	padding: 10px 10px 10px 10px;
+	width: 130px;
+	height: 100px;
+	float: left;
+}
+
+/*placeholder*/
+#resultsgooglemap {
+	width: 100%;
+	height: 600px;
+}
+
+.contentheadings {
+	margin: none;
+	width: 896px;
+	background-color: #6fdc6f;
+	vertical-align: middle;
+
+	clear: both;
+	border-top-right-radius: 8px;
+	border-top-left-radius: 8px;
+}
+
+.contentheadings h1 {
+	text-align: center;
+	color: #FFFFFF;
+	margin: 0;
+	vertical-align: middle;
+	line-height: 50px;
+	font-size: 30px;
+	font-weight: lighter;
+}
+
+.contentheadings #left {
+	color: #ffe6b3;
+	padding-left: 180px;
+	float: left;
+
+}
+
+.contentheadings #right {
+	color: #ffe6b3;
+	float: right;
+	padding-right: 180px;
+}
+
+.searchdiv {
+	margin-top: 40px;
+	margin-bottom: 40px;
+	padding: 10px 60px 10px 60px;
+	border-radius: 5px;
+	border: 1px solid grey;
+	width: 200px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.searchdiv .subheading {
+	border-radius: 6px;
+	color: #ffe6b3;
+	text-align: center;
+	background-color: #6fdc6f;
+	padding: 10px 10px 10px 10px;
+	margin-bottom: 10px;
+	font-size: 12px;
+}
+
+
+#selectsuburb {
+	width: 140px;
+}
+
+.search .searchbutton {
+	width: 200px;
+}
+
+.userreview #post{
+	background-color: #6fdc6f;
+	border-radius: 15px;
+	padding: 15px 230px 15px 230px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 410px;
+	overflow: auto;
+}
+
+.itemheading {
+	/*border-top: 2px solid #d3cfcf;*/
+	/*border-bottom: 2px solid #d3cfcf;*/
+	
+	width: calc(100% - 20px);
+	height: 20px;
+	line-height: 20px;
+	vertical-align: middle;
+	text-align: center;
+	background-color: #EDEBEB;
+	padding: 10px 10px 10px 10px;
+}
+
+.itemheading h3 {
+	margin: 0px;
+	color: #999696;
+}
+
+.userreview textarea {
+	margin-bottom: 10px;
+	color: #999696;
+	padding: 0px;
+	background-color: #EDEBEB;
+	resize: none;
+	font-size: 20px;
+	font-family: helvetica;
+	text-align: left;
+	width: 400px;
+	height: 100px;
+}
+
+.userreview .starRating {
+	color: #FFFFFF;
+	margin-right: 100px;
+	float: left;
+}
+
+.userreview #submitbutton {
+	float: right;
+}
+
+.userreview .userimage {
+	margin-top: 20px;
+}
+
+
+#centerposcomment {
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#centerposcomment h3 {
+	margin: 0px;
+	margin-bottom: 10px;
+	padding: 0px;
+}
+
+.contentcontainer#login {
+	opacity: 0.95;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	/*specific width value is so that the login div appears to line up 
+	with the title text without cutting off the button elements*/
+	width: 220px;
+	background-color: #6fdc6f;
+	padding: 10px 30px 10px 30px;
+	border: 2px solid #2db92d;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	overflow: auto;
+}
+
+.signin {
+	float: left;
+	width: 200px;
+	margin: 0px;
+}
+
+#loginbutton {
+	border-radius: 15px;
+	font-size: 16px;
+	border: 0px;
+	background-color: #0080ff;
+	width: 90px;
+	height: 50px;
+	float: left;
+	color: #FFFFFF;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#loginbutton:hover {
+	background-color: #0059b3;
+}
+
+#registerbutton {
+	/*margin-top: 125px;*/
+	text-decoration: none;
+	text-align: center;
+	line-height: 49px;
+	vertical-align: middle;
+	border-radius: 15px;
+	font-size: 16px;
+	border: 0px;
+	background-color: #ff8000;
+	width: 90px;
+	height: 50px;
+	float: right;
+	color: #FFFFFF;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#registerbutton:hover {
+	background-color: #994d00;
+}
+
+.registrationheading {
+	/*dark grey*/
+	color: #595959; 
+	text-align: center;
+	margin-top: 70px;
+	margin-right: auto;
+	margin-left: auto;
+	width: 400px;
+}
+
+.registrationheading h1 {
+	letter-spacing: 8px;
+	font-size: 55px;
+}
+
+.registrationheading h3 {
+	padding-left: 40px;
+	padding-right: 40px;
+	letter-spacing: 6px;
+	font-size: 20px;
+	/*split text*/
+	border-bottom:1px solid #595959;
+	padding-bottom: 20px;
+}
+
+#registration form {
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background-color: #1ac6ff;
+	padding: 10px 10px 30px 10px;
+}
+
+#credentials {
+	margin-bottom: 30px;
+}
+
+#regbutton #new {
+	padding-left: 60px;
+	padding-right: 60px;
+}
+
+
+.contentcontainer#login form {
+	padding-bottom: 30px;
+}
+
+.contentcontainer form h1 {
+	font-size: 12px;
+	color: #595959;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin: 0px;
+}
+
+.about_container {
+	background-image: url("images/backtest.png");
+	background-size: cover;
+	width: 100%;
+	height: 500px;
+}
+
+.about_container #text {
+	text-align: justify;
+	margin-left: 15px;
+	color: #FFFFFF;
+	width: 60%;
+	float: left;
+}
+
+
+
