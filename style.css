@@ -156,10 +156,13 @@ body#normal  {
 }
 
 .footer_normal {
+	font-size: 14px;
+	line-height: 5px;
+	vertical-align: middle;
 	box-shadow: 6px 4px 20px 6px rgba(0, 0, 0, 0.2), 6px 5px 20px 6px rgba(0, 0, 0, 0.19);
 	margin-top: 50px;
 	color: #FFFFFF;
-	height:50px;
+	height:30px;
 	position: fixed;
 	width:100%;
 	bottom: 0;
@@ -358,7 +361,7 @@ emp#information {
 	padding-right: 180px;
 }
 
-.searchdiv {
+.searchregisterdiv {
 	margin-top: 40px;
 	margin-bottom: 40px;
 	padding: 10px 60px 10px 60px;
@@ -369,7 +372,7 @@ emp#information {
 	margin-left: auto;
 }
 
-.searchdiv .subheading {
+.searchregisterdiv .subheading {
 	border-radius: 6px;
 	color: #ffe6b3;
 	text-align: center;
