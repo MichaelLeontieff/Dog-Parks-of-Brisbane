@@ -11,7 +11,6 @@
 		<div class="undernav" id="undernavnormal">
 
 			<div class="contentdivider">
-
 				<div id="pageheadings">
 					<h1>Park Location <i>and</i> Information</h1>
 				</div>
