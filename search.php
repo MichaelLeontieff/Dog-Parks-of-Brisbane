@@ -19,36 +19,12 @@
 					<div class="contentheadings">
 						<h1>Search Attributes</h1>
 					</div>
-					
-					<div class="searchdiv">
+
+					<div class="searchregisterdiv">
 
 						<form class="search">
 
-							<h2 class="subheading">Suburb<br>
-								<select id="selectsuburb" required>
-									<option disabled selected value>-</option>
-				  					<option value="volvo">Glennvale</option>
-									<option value="saab">Currumbin</option>
-									<option value="mercedes">Carindale</option>
-									<option value="audi">Mulberry</option>
-								</select>
-							</h2>
-							
-							<h2 class="subheading">Park Name
-								<input type="text" name="parkname" required>
-							</h2>
-
-							<h2 class="subheading">Rating<br>
-								<select id="selectrating" required>
-								<option disabled selected value>-</option>
-			  					<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-							</select>
-								
-							</h2>
+							<?php require 'include/search_form.inc'; ?>
 							
 							<h2 class="subheading"><a onclick="getLocation()" id="geolocationstatus">GeoLocation</a></h2>
 							
