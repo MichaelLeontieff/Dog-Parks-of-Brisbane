@@ -12,6 +12,9 @@ loose_input_field("parkname", "Park Name", "text");
 rating("rating", "Rating");
 
 // geolocation input field
+geoLocation("geolocation", "Use GeoLocation");
+
+echo '<input type="submit" class="submitbutton" value="Fetch!">';
 
 
 ?>

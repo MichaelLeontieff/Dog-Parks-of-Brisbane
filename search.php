@@ -22,13 +22,22 @@
 
 					<div class="searchregisterdiv">
 
-						<form class="search">
-
-							<?php require 'include/search_form.inc'; ?>
-							
-							<h2 class="subheading"><a onclick="getLocation()" id="geolocationstatus">GeoLocation</a></h2>
-							
-							<input type="submit" class="searchbutton" value="Fetch!">	
+						<form action="search.php" method="post">
+							<?php
+							include 'include/validate.inc';
+							$errors = array();
+							if (count($_POST) > 0) {
+								validatePark($errors, $_POST, 'parkname');
+								if ($errors) {
+									writeErrors($errors);
+									include 'include/search_form.inc';
+								} else {
+									echo 'form submitted successfully with no errors';
+								}
+							} else {
+								include 'include/search_form.inc';
+							}
+							?>
 						</form>
 					</div>
 				</div>

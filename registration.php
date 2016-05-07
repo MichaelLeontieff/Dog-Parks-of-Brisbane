@@ -21,7 +21,42 @@
 				
 					<div class="searchregisterdiv">
 						<form action="registration.php" method="post">
-							<?php include 'include/registration_form.inc'; ?>
+							<?php
+							include 'include/validate.inc';
+							$errors = array();
+							if (isset($_POST['username'])) {
+
+								// username
+								validateUsername($errors, $_POST, 'username');
+								// firstname
+								validateFirstName($errors, $_POST, 'firstname');
+								// lastname
+								validateLastName($errors, $_POST, 'lastname');
+								// birthday
+								validateDateofBirth($errors, $_POST, 'day');
+								validateDateofBirth($errors, $_POST, 'month');
+								validateDateofBirth($errors, $_POST, 'year');
+								// gender
+								validateGender($errors, $_POST, 'gender');
+								// email
+								validateEmail($errors, $_POST, 'email');
+								// password
+								validatePassword($errors, $_POST, 'password');
+
+
+								if ($errors) {
+									writeErrors($errors);
+									include 'include/registration_form.inc';
+								} else {
+									echo 'form submitted successfully with no errors, welcome to Dog Parks of Brisbane!';
+								}
+							} else {
+								include 'include/registration_form.inc';
+							}
+
+
+							?>
+
 						</form>
 					</div>
 				</div>

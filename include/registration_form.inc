@@ -33,5 +33,5 @@ input_field("password", "Desired Password", $commonRegexPassword, "Password must
 
 ?>
 
-<input type="submit" value="Sign Up">	
+<input type="submit" class="submitbutton" value="Sign Up">
     

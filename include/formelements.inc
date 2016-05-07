@@ -5,12 +5,23 @@ function label($name, $label)
     echo "<label for=" . $name . ">" . $label . ":</label>";
 }
 
+function posted_value($name)
+{
+    if (isset($_POST[$name]))
+        echo htmlspecialchars($_POST[$name]);
+}
+
 function input_field($name, $label, $pattern, $title, $type)
 {
     echo '<h2 class="subheading">';
     label($name, $label);
     echo '<br>';
-    echo "<input type=\"$type\" name=\"$name\" pattern=\"$pattern\" title=\"$title\" required/>";
+    if (isset($_POST[$name])) {
+        $value = htmlspecialchars($_POST[$name]);
+    } else {
+        $value = "";
+    }
+    echo "<input type=\"$type\" value=\"$value\" name=\"$name\" pattern=\"$pattern\" title=\"$title\" required/>";
     echo '</h2>';
 }
 
@@ -19,13 +30,30 @@ function loose_input_field($name, $label, $type)
     echo '<h2 class="subheading">';
     label($name, $label);
     echo '<br>';
-    echo "<input type=\"$type\" name=\"$name\" />";
+    if (isset($_POST[$name])) {
+        $value = htmlspecialchars($_POST[$name]);
+    } else {
+        $value = null;
+    }
+    echo "<input type=\"$type\" value=\"$value\" name=\"$name\" required/><br>";
+
     echo '</h2>';
 }
 
 function select($name, $values)
 {
     echo "<select name=\"$name\">";
+    echo '<option selected disabled>select</option>';
+    foreach ($values as $value => $display) {
+        echo "<option>$display</option>";
+    }
+    echo '</select>';
+}
+
+function selectoptional($name, $values)
+{
+    echo "<select name=\"$name\">";
+    echo '<option selected>all</option>';
     foreach ($values as $value => $display) {
         echo "<option>$display</option>";
     }
@@ -72,6 +100,15 @@ function dateofbirth($name, $label)
     select('month', $months);
     select('year', $years);
     echo '</h2>';
+}
+
+function geoLocation($name, $label)
+{
+    echo '<h2 class="subheading">';
+    label($name, $label);
+    echo '<input type="checkbox" default="unchecked" onclick="getLocation()" name=\"$name\" value="yes">Yes<br>';
+    echo '<br>';
+    echo '<a onclick="getLocation()" id="geolocationstatus"></a></h2>';
 }
 
 

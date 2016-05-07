@@ -367,9 +367,11 @@ emp#information {
 	padding: 10px 60px 10px 60px;
 	border-radius: 5px;
 	border: 1px solid grey;
-	width: 250px;
+	width: 350px;
 	margin-right: auto;
 	margin-left: auto;
+	overflow: auto;
+	font-weight: bolder;
 }
 
 .searchregisterdiv .subheading {
@@ -379,7 +381,23 @@ emp#information {
 	background-color: #6fdc6f;
 	padding: 10px 10px 10px 10px;
 	margin-bottom: 10px;
+	font-size: 14px;
+}
+
+.searchregisterdiv .validationerror {
+	border-radius: 6px;
+	color: #FFFFFF;
+	text-align: left;
+	background-color: #ff6666;
+	padding: 10px 10px 10px 10px;
+	margin-bottom: 10px;
 	font-size: 12px;
+	font-weight: bolder;
+}
+
+.validationerrortitle {
+	margin-top: 0px;
+	font-size: 20px;
 }
 
 
@@ -387,8 +405,9 @@ emp#information {
 	width: 140px;
 }
 
-.search .searchbutton {
-	width: 200px;
+.submitbutton {
+	float: right;
+	width: 100px;
 }
 
 .userreview #post{
