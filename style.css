@@ -395,6 +395,10 @@ emp#information {
 	font-weight: bolder;
 }
 
+.formsubmitmessage {
+	color: red;
+}
+
 .validationerrortitle {
 	margin-top: 0px;
 	font-size: 20px;

@@ -32,6 +32,13 @@ function countNonEmpty($field_list)
     return $counter;
 }
 
+// simply checks if field is empty
+function checkEmpty(&$errors, $field_list, $field_name, $label)
+{
+    if (empty($field_list[$field_name])) {
+        $errors[$field_name] = $label . ' is required';
+    }
+}
 
 // check number of selected fields
 function validateCount(&$errors, $field_list)

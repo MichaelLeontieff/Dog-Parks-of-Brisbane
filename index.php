@@ -12,19 +12,28 @@
 				<h1>BRISBANE</h1>
 			</div>
 			<div class="contentcontainer" id="login">
-				
-					<form class="signin">
-						<h1>Username:</h1>
-						<input type="text" name="username" required><br>
-						<h1>Password:</h1>
-						<input type="text" name="password" required>	
-						<br>
-						<br>
-						<input type="submit" value="Log in" id="loginbutton">
-						
-						<a href="registration.php" id="registerbutton">Register</a>
-						
-					</form>
+
+				<form class="signin" action="index.php" method="post">
+					<?php
+					include 'include/validate.inc';
+					$errors = array();
+					if (isset($_POST['givenusername'])) {
+						// validate username
+						validateUsername($errors, $_POST, 'givenusername', 'Username');
+						// validate password
+						validatePassword($errors, $_POST, 'givenpassword', 'Password');
+
+						if ($errors) {
+							writeErrors($errors);
+							include 'include/login_form.inc';
+						} else {
+							echo '<p class="formsubmitmessage">Success! click here to search</p>';
+						}
+					} else {
+						include 'include/login_form.inc';
+					}
+					?>
+				</form>
 
 					
 			</div>

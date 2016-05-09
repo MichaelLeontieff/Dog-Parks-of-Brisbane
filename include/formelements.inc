@@ -11,6 +11,19 @@ function posted_value($name)
         echo htmlspecialchars($_POST[$name]);
 }
 
+function usernamepasswordField($name, $label, $type)
+{
+    if (isset($_POST[$name])) {
+        $value = htmlspecialchars($_POST[$name]);
+    } else {
+        $value = "";
+    }
+    echo '<h1>' . $label . '</h1>';
+    echo "<input type=\"$type\" value=\"$value\" name=\"$name\" required/><br>";
+
+}
+
+
 function input_field($name, $label, $pattern, $title, $type)
 {
     echo '<h2 class="subheading">';
