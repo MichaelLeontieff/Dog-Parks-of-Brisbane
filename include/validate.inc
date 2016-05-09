@@ -123,6 +123,24 @@ function validatePassword(&$errors, $field_list, $field_name)
     }
 }
 
+// validate comment
+function validateComment(&$errors, $field_list, $field_name)
+{
+    $pattern = "/.{4,}/";
+    if (!isset($field_list[$field_name]) || empty($field_list[$field_name])) {
+        $errors[$field_name] = 'Comment is a required field';
+    } else if (!preg_match($pattern, $field_list[$field_name])) {
+        $errors[$field_name] = 'A comment of at least 4 characters is required';
+    }
+}
+
+// validate rating
+function validateRating(&$errors, $field_list, $field_name)
+{
+    if (!isset($field_list[$field_name]) || empty($field_list[$field_name])) {
+        $errors[$field_name] = 'Rating is a required field';
+    }
+}
 
 
 ?>

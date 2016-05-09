@@ -384,7 +384,7 @@ emp#information {
 	font-size: 14px;
 }
 
-.searchregisterdiv .validationerror {
+.validationerror {
 	border-radius: 6px;
 	color: #FFFFFF;
 	text-align: left;

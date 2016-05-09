@@ -1,6 +1,13 @@
-<div class="userreview">
-	<div class="userimage"></div>
-	<h3>Sam Smith says...</h3>
-	<p>Would've been better if they provided better fencing for the dog areas, my pupper almost escaped.</p>
-	<p>2.5 <i>out of</i> 5 Stars</p>
-</div>
+<?php
+
+function userReview($name, $rating, $comment)
+{
+    echo '<div class="userreview">';
+    echo '<div class="userimage"></div>';
+    echo '<h3>' . $name . ' says...</h3>';
+    echo '<p>' . $comment . '</p>';
+    echo '<p>' . $rating . ' <i>out of</i> 5 Stars</p>';
+    echo '</div>';
+}
+
+?>

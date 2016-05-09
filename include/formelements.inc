@@ -106,9 +106,39 @@ function geoLocation($name, $label)
 {
     echo '<h2 class="subheading">';
     label($name, $label);
-    echo '<input type="checkbox" default="unchecked" onclick="getLocation()" name=\"$name\" value="yes">Yes<br>';
+    echo "<input type=\"checkbox\" default=\"unchecked\" onclick=\"getLocation()\" name=\"$name\" value=\"yes\">Yes<br>";
     echo '<br>';
     echo '<a onclick="getLocation()" id="geolocationstatus"></a></h2>';
+}
+
+function commentField($name)
+{
+    if (isset($_POST[$name])) {
+        $value = htmlspecialchars($_POST[$name]);
+    } else {
+        $value = null;
+    }
+    echo "<textarea name=\"$name\" id=\"comments\" required>" . $value . "</textarea>";
+}
+
+function radioRating($name)
+{
+    if (isset($_POST[$name])) {
+        $value = htmlspecialchars($_POST[$name]);
+    } else {
+        $value = null;
+    }
+    echo "<span class=\"starRating\">";
+    echo "<label>Rating: </label>";
+    for ($i = 1; $i <= 5; $i++) {
+        if ($value == $i) {
+            echo '<input id="rating1" type="radio" name="rating" value=' . $i . ' checked required>';
+        } else {
+            echo '<input id="rating1" type="radio" name="rating" value=' . $i . ' required>';
+        }
+        echo '<label for="rating1">' . $i . '</label>';
+    }
+    echo '</span>';
 }
 
 

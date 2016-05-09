@@ -39,29 +39,35 @@
 						<div class="userimage"></div>
 						<div id="centerposcomment">
 						<h3>What do you think of this Park?</h3>
-							<form method="post">
-							
-							<textarea name="comments" id="comments" required></textarea>
-							<span class="starRating">
-								<label>Rating: </label>
-								<input id="rating1" type="radio" name="rating" value="1" required>
-								<label for="rating1">1</label>
-								<input id="rating2" type="radio" name="rating" value="2" required>
-								<label for="rating2">2</label>
-								<input id="rating3" type="radio" name="rating" value="3" required>
-								<label for="rating3">3</label>
-								<input id="rating4" type="radio" name="rating" value="4" required>
-								<label for="rating4">4</label>
-								<input id="rating5" type="radio" name="rating" value="5" required>
-								<label for="rating5">5</label>
-							</span>
-							<input type="submit" value="Post" id="submitbutton">
+							<form action="individual.php" method="post">
+								<?php
+								include 'include/validate.inc';
+								$errors = array();
+								if (isset($_POST['comment'])) {
+									// validate comment
+									validateComment($errors, $_POST, 'comment');
+									// validate rating
+									validateRating($errors, $_POST, 'rating');
+
+									if ($errors) {
+										writeErrors($errors);
+										include 'include/review_form.inc';
+									} else {
+										echo 'form submitted successfully with no errors, thanks for posting!';
+									}
+								} else {
+									include 'include/review_form.inc';
+								}
+								?>
 							</form>
 						</div>
 					</div>
 
 					<div class="itemheading"><h3>User Ratings</h3></div>
-					<?php include 'include/user_review.inc'; ?>
+					<?php include 'include/user_review.inc';
+					userReview("Michael Leontieff", "5", "Great Park!");
+					?>
+
 					
 				</div>
 			</div>
