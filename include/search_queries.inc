@@ -1,5 +1,7 @@
 <?php
 
+global $queryresult;
+
 function fetchVariables()
 {
     $queryValues = array();
@@ -27,13 +29,12 @@ function fetchVariables()
 
 function numberResults($results)
 {
+    $count = 0;
+    foreach ($results as $row) {
+        $count++;
 
-}
-
-
-function searchByName($value)
-{
-
+    }
+    return $count;
 }
 
 function fetchQueryResults($pdo, $queryValues)
@@ -49,12 +50,14 @@ function fetchQueryResults($pdo, $queryValues)
     } else if ($queryValues[0] == "Empty Search") {
         $result = emptySearch($pdo);
     }
+
+    $queryresult = $result;
+
     return $result;
 }
 
 function searchBySuburb($pdo, $value)
 {
-
     $stmt = $pdo->prepare('SELECT * FROM dogparks WHERE suburb = :suburb');
     $stmt->bindValue(':suburb', $value);
     $stmt->execute();
@@ -66,6 +69,15 @@ function searchByRating($value)
 {
 
 }
+
+//function searchByName($pdo, $value)
+//{
+//    $stmt = $pdo->prepare('SELECT * FROM dogparks WHERE parkname LIKE ?');
+//    $stmt->bindValue(1, $value + '%');
+//    $stmt->execute();
+//
+//    return $stmt;
+//}
 
 function searchByGeolocation($lat, $lon)
 {

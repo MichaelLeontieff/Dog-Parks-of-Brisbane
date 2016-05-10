@@ -109,7 +109,8 @@ function rating($name, $label) {
     echo '<h2 class="subheading">';
     label($name, $label);
     echo '<br>';
-    select("rating", [1, 2, 3, 4, 5]);
+    $array = array([1, 2, 3, 4, 5]);
+    select("rating", $array);
     echo '</h2>';
 }
 

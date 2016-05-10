@@ -13,6 +13,13 @@
 
 	// fetch name of field that's been queried
 	$queryValues = fetchVariables();
+
+	// create database connection
+	$pdo = createConnection();
+
+	// run query based on input field
+	$results = fetchQueryResults($pdo, $queryValues);
+
 	?>
 
 		<div id="undernavnormal">
@@ -25,7 +32,7 @@
 
 				<div class="contentcell">
 					<div class="contentheadings">
-						<h1><?php echo 'The following parks were found based on ' . $queryValues[0] ?></h1>
+						<h1><?php echo 'The following ' . numberResults($results) . ' parks were found based on ' . $queryValues[0] ?></h1>
 					</div>
 				<div id="resultsgooglemap"></div>
 				</div>
@@ -35,16 +42,11 @@
 						<h1>Detailed Information</h1>
 					</div>
 
-					<?php
-					// create database connection
-					$pdo = createConnection();
-
-					// run query based on input field
+					<?php include 'include/query_results_table.inc';
+					// variable scope workaround
 					$results = fetchQueryResults($pdo, $queryValues);
-					include 'include/query_results_table.inc';
-					buildResultsTable($results);
-
-					?>
+					// build results table
+					buildResultsTable($results); ?>
 					
 				</div>
 			</div>
