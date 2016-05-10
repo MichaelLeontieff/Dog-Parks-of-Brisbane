@@ -3,10 +3,18 @@
 	<head>
 		<title>Dog Parks of Brisbane: Results</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
-		<script src="resultsscripts.js"></script>
+		<script src="javascript/resultsscripts.js"></script>
 	</head>
 	<body id="normal">
-		<?php include 'include/nav_normal.inc'; ?>
+	<?php
+	include 'include/nav_normal.inc';
+	include 'include/search_queries.inc';
+	include 'include/pdo_connect.inc';
+
+	// fetch name of field that's been queried
+	$queryValues = fetchVariables();
+	?>
+
 		<div id="undernavnormal">
 
 			<div class="contentdivider">
@@ -17,7 +25,7 @@
 
 				<div class="contentcell">
 					<div class="contentheadings">
-						<h1>The Following Parks Were Found</h1>
+						<h1><?php echo 'The following parks were found based on ' . $queryValues[0] ?></h1>
 					</div>
 				<div id="resultsgooglemap"></div>
 				</div>
@@ -27,7 +35,16 @@
 						<h1>Detailed Information</h1>
 					</div>
 
-					<?php include 'include/query_results_table.inc'; ?>
+					<?php
+					// create database connection
+					$pdo = createConnection();
+
+					// run query based on input field
+					$results = fetchQueryResults($pdo, $queryValues);
+					include 'include/query_results_table.inc';
+					buildResultsTable($results);
+
+					?>
 					
 				</div>
 			</div>

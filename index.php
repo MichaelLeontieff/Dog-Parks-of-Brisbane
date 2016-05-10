@@ -19,9 +19,9 @@
 					$errors = array();
 					if (isset($_POST['givenusername'])) {
 						// validate username
-						validateUsername($errors, $_POST, 'givenusername', 'Username');
+						checkEmpty($errors, $_POST, 'givenusername', 'Username');
 						// validate password
-						validatePassword($errors, $_POST, 'givenpassword', 'Password');
+						checkEmpty($errors, $_POST, 'givenpassword', 'Password');
 
 						if ($errors) {
 							writeErrors($errors);

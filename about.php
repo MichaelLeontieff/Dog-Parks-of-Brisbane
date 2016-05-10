@@ -3,7 +3,7 @@
 	<head>
 		<title>Dog Parks of Brisbane: About Us</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
-		<script src="searchscripts.js"></script>
+		<script src="javascript/searchscripts.js"></script>
 	</head>
 	<body id="normal">
 		<?php include "include/nav_normal.inc"; ?>

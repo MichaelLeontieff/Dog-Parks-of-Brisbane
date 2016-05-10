@@ -1,5 +1,7 @@
 <?php
 
+include 'pdo_connect.inc';
+
 function label($name, $label)
 {
     echo "<label for=" . $name . ">" . $label . ":</label>";
@@ -48,7 +50,22 @@ function loose_input_field($name, $label, $type)
     } else {
         $value = null;
     }
-    echo "<input type=\"$type\" value=\"$value\" name=\"$name\" required/><br>";
+    echo "<input type=\"$type\" value=\"$value\" name=\"$name\"/><br>";
+
+    echo '</h2>';
+}
+
+function geo_input_field($name, $label, $type, $id)
+{
+    echo '<h2 class="subheading">';
+    label($name, $label);
+    echo '<br>';
+    if (isset($_POST[$name])) {
+        $value = htmlspecialchars($_POST[$name]);
+    } else {
+        $value = null;
+    }
+    echo "<input type=\"$type\" id=\"$id\" value=\"$value\" name=\"$name\" readonly/><br>";
 
     echo '</h2>';
 }
@@ -74,10 +91,17 @@ function selectoptional($name, $values)
 }
 
 function suburb($name, $label) {
+    $pdo = createConnection();
+    $result = $pdo->query('SELECT DISTINCT suburb FROM n9455396.dogparks');
     echo '<h2 class="subheading">';
     label($name, $label);
     echo '<br>';
-    select("suburb", ["Greendale", "Currumbin"]);
+    echo '<select name="suburb">';
+    echo '<option value="select" selected disabled>Select</option>';
+    foreach ($result as $suburb) {
+        echo '<option value="', $suburb['suburb'], '">', $suburb['suburb'], '</option>';
+    }
+    echo '</select><br>';
     echo '</h2>';
 }
 
@@ -122,6 +146,11 @@ function geoLocation($name, $label)
     echo "<input type=\"checkbox\" default=\"unchecked\" onclick=\"getLocation()\" name=\"$name\" value=\"yes\">Yes<br>";
     echo '<br>';
     echo '<a onclick="getLocation()" id="geolocationstatus"></a></h2>';
+}
+
+function fieldCheck($name, $label)
+{
+    echo "<input type=\"checkbox\" default=\"unchecked\" name=\"$name\" value=\"yes\">Yes<br>";
 }
 
 function commentField($name)

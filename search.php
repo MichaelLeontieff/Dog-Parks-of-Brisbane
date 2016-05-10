@@ -3,7 +3,7 @@
 	<head>
 		<title>Dog Parks of Brisbane: Search</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
-		<script src="searchscripts.js"></script>
+		<script src="javascript/searchscripts.js"></script>
 	</head>
 	<body id="normal">
 		<?php include "include/nav_normal.inc"; ?>
@@ -20,20 +20,26 @@
 						<h1>Search Attributes</h1>
 					</div>
 
+					<div id="searchmessage"><h3>An empty search will return all parks, if multiple search queries are
+							set in the form, first one will be used. </h3><br>
+						<h3>If you wish to search by GeoLocation, check the box and wait for the two fields to fill
+							before submitting and the closest park will be found.</</h3></div>
+
 					<div class="searchregisterdiv">
 
 						<form action="search.php" method="post">
 							<?php
 							include 'include/validate.inc';
-							$errors = array();
+
 							if (count($_POST) > 0) {
-								validatePark($errors, $_POST, 'parkname');
-								if ($errors) {
-									writeErrors($errors);
-									include 'include/search_form.inc';
-								} else {
+								// if we reach here then the form has been posted
 									echo 'form submitted successfully with no errors';
-								}
+
+								// construct url string based on set fields
+								$url = buildURL($_POST);
+
+								// redirect with created url
+								echo '<META HTTP-EQUIV=REFRESH CONTENT="1; ' . $url . '">';
 							} else {
 								include 'include/search_form.inc';
 							}
@@ -44,7 +50,9 @@
 			</div>
 
 		<!--FOOTER-->
-		<?php include "include/footer_normal.inc"; ?>
+			<?php include "include/footer_normal.inc";
+
+			?>
 
 		<!--END CONTENT-->
 		</div>

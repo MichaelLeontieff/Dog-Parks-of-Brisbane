@@ -3,7 +3,7 @@
 	<head>
 		<title>Dog Parks of Brisbane: Individual Result</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
-		<script src="myscripts.js"></script>
+		<script src="javascript/myscripts.js"></script>
 	</head>
 	<body id="normal">
 		<?php include "include/nav_normal.inc"; ?>

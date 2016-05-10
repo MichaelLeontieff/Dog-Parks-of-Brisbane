@@ -1,3 +1,14 @@
+<?php
+echo '<table id="parkinfotable">';
+foreach ($results as $column) {
+    echo '<tr>';
+    echo '<td></td>';
+    echo '<td></td>';
+    echo '</tr>';
+}
+echo '</table>';
+?>
+
 <table id="parkinfotable">
   <tr>
     <td>ID:</td>

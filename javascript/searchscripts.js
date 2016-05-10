@@ -15,7 +15,9 @@ function showPosition(position) {
 	console.log("lat1 " + lat1);
 	console.log("lon1 " + lon1);
 
-	document.getElementById("geolocationstatus").innerHTML = "Latitude: " + lat1 + "\nLongitude: " + lon1;
+	document.getElementById("geolatfield").value = lat1;
+	document.getElementById("geolonfield").value = lon1;
+	//document.getElementById("geolocationstatus").innerHTML = "Latitude: " + lat1 + "\nLongitude: " + lon1;
 
 }
 	

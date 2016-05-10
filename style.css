@@ -293,6 +293,10 @@ emp#information {
 	color: #595959;
 }
 
+#tableresults th {
+	font-size: 15px;
+}
+
 #tableresults td {
 	padding: 8px 8px 8px 8px;
 }
@@ -384,6 +388,16 @@ emp#information {
 	font-size: 14px;
 }
 
+.searchregisterdiv .geolocmodify {
+	border-radius: 6px;
+	color: #ffe6b3;
+	text-align: center;
+	background-color: #6fdc6f;
+	padding: 10px 10px 10px 10px;
+	margin-bottom: 10px;
+	font-size: 14px;
+}
+
 .validationerror {
 	border-radius: 6px;
 	color: #FFFFFF;
@@ -435,6 +449,25 @@ emp#information {
 	text-align: center;
 	background-color: #EDEBEB;
 	padding: 10px 10px 10px 10px;
+}
+
+#searchmessage {
+	/*border-top: 2px solid #d3cfcf;*/
+	/*border-bottom: 2px solid #d3cfcf;*/
+
+	width: calc(100% - 20px);
+	height: 40px;
+	line-height: 15px;
+	vertical-align: middle;
+	text-align: center;
+	background-color: #EDEBEB;
+	padding: 10px 10px 10px 10px;
+}
+
+#searchmessage h3 {
+	margin: 0px;
+	font-size: 14px;
+	color: #999696;
 }
 
 .itemheading h3 {

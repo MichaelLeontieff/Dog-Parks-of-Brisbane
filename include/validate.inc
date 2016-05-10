@@ -48,16 +48,6 @@ function validateCount(&$errors, $field_list)
     }
 }
 
-function validatePark(&$errors, $field_list, $field_name)
-{
-    $pattern = "/[A-Za-z0-9]{2,}/";
-    if (!isset($field_list[$field_name]) || empty($field_list[$field_name])) {
-        $errors[$field_name] = 'Parkname is required for form submission, type "any" to negate field from query';
-    } else if (!preg_match($pattern, $field_list[$field_name])) {
-        $errors[$field_name] = 'Username field value is invalid, must be between 3 and 16 characters and comprised of only letters and numbers';
-    }
-}
-
 // validate username
 function validateUsername(&$errors, $field_list, $field_name)
 {
@@ -149,5 +139,38 @@ function validateRating(&$errors, $field_list, $field_name)
     }
 }
 
+// construct results url to parse values to results page for sql query
+function buildURL($field_list)
+{
+
+//    $vars = array('suburb' => $field_list['suburb'],
+//        'parkname' => $field_list['parkname'],
+//        'rating' => $field_list['parkname']);
+//    $querystring = http_build_query($vars);
+//    $url = "results.php?" . $querystring;
+
+    $vars = array();
+
+    // check suburb
+    if (!empty($field_list['suburb'])) {
+        $vars = array('suburb' => $field_list['suburb']);
+
+    } else if (!empty($field_list['parkname'])) {
+        if ($field_list['parkname'] != 'any') {
+            $vars = array('parkname' => $field_list['parkname']);
+        }
+    } else if (!empty($field_list['rating'])) {
+        $vars = array('rating' => $field_list['rating']);
+    } else if (!empty($field_list['lat'])) {
+        echo 'this is reaching';
+        $vars = array('lat' => $field_list['lat'], 'lon' => $field_list['lon']);
+    }
+
+
+    $querystring = http_build_query($vars);
+
+    return $url = "results.php?" . $querystring;
+
+}
 
 ?>
