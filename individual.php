@@ -3,10 +3,30 @@
 	<head>
 		<title>Dog Parks of Brisbane: Individual Result</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
-		<script src="javascript/myscripts.js"></script>
+		<script src="javascript/individualparkscripts.js"></script>
 	</head>
 	<body id="normal">
-		<?php include "include/nav_normal.inc"; ?>
+	<?php
+	include "include/nav_normal.inc";
+	require_once "include/pdo_connect.inc";
+	require_once 'include/search_queries.inc';
+	/*
+     *
+     * The following connection code is repeated in order 
+     * to grab query data between two code blocks of different variable scope
+     * 
+     */
+
+	// get park id value
+	$parkid = $_GET['id'];
+
+	// create database connection
+	$pdo = createConnection();
+
+	// run query based on supplied id
+	$result = fetchIndividualPark($pdo, $parkid);
+
+	?>
 
 		<div class="undernav" id="undernavnormal">
 
@@ -17,7 +37,7 @@
 
 				<div class="contentcell">
 					<div class="contentheadings">
-						<h1>REINHOLD CRES DOG OFF LEASH AREA</h1>
+						<h1><?php echo getParkName($result); ?></h1>
 					</div>
 					<div id="locationmap"></div>			
 				</div>
@@ -26,7 +46,21 @@
 					<div class="contentheadings">
 						<h1>Information</h1>
 					</div>
-					<?php include 'include/individual_park_information_table.inc'; ?>	
+					<?php
+					// include park table creation function
+					include 'include/individual_park_information_table.inc';
+					// include search_queries
+
+					// get park id value
+					$parkid = $_GET['id'];
+
+					// run query based on supplied id
+					$result = fetchIndividualPark($pdo, $parkid);
+
+					// render individual table
+					buildIndividualParkResultTable($result);
+
+					?>	
 				</div>
 
 				<div class="contentcell">
@@ -39,7 +73,7 @@
 						<div class="userimage"></div>
 						<div id="centerposcomment">
 						<h3>What do you think of this Park?</h3>
-							<form action="individual.php" method="post">
+							<form action="<?php echo 'individual.php?id=' . $parkid ?>" method="post">
 								<?php
 								include 'include/validate.inc';
 								$errors = array();

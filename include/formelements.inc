@@ -1,6 +1,6 @@
 <?php
 
-include 'pdo_connect.inc';
+require_once 'pdo_connect.inc';
 
 function label($name, $label)
 {

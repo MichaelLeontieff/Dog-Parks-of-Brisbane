@@ -32,9 +32,15 @@ function numberResults($results)
     $count = 0;
     foreach ($results as $row) {
         $count++;
-
     }
     return $count;
+}
+
+function getParkName($result)
+{
+    foreach ($result as $row) {
+        return $row['dogparkname'];
+    }
 }
 
 function fetchQueryResults($pdo, $queryValues)
@@ -54,6 +60,15 @@ function fetchQueryResults($pdo, $queryValues)
     $queryresult = $result;
 
     return $result;
+}
+
+function fetchIndividualPark($pdo, $parkid)
+{
+    $stmt = $pdo->prepare('SELECT * FROM dogparks WHERE id = :parkid');
+    $stmt->bindValue(':parkid', $parkid);
+    $stmt->execute();
+
+    return $stmt;
 }
 
 function searchBySuburb($pdo, $value)

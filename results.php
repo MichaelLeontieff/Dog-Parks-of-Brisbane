@@ -9,7 +9,7 @@
 	<?php
 	include 'include/nav_normal.inc';
 	include 'include/search_queries.inc';
-	include 'include/pdo_connect.inc';
+	require_once 'include/pdo_connect.inc';
 
 	// fetch name of field that's been queried
 	$queryValues = fetchVariables();
