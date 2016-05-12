@@ -6,7 +6,7 @@ require 'formelements.inc';
 suburb("suburb", "Suburb");
 
 // park name input field
-loose_input_field("parkname", "Park Name", "text");
+loose_input_field("parkname", "Dog Park Name", "text");
 
 // rating input field
 rating("rating", "Rating");

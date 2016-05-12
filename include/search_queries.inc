@@ -82,14 +82,15 @@ function searchByRating($value)
 
 }
 
-//function searchByName($pdo, $value)
-//{
-//    $stmt = $pdo->prepare('SELECT * FROM dogparks WHERE parkname LIKE ?');
-//    $stmt->bindValue(1, $value + '%');
-//    $stmt->execute();
-//
-//    return $stmt;
-//}
+function searchByName($pdo, $value)
+{
+    $value = strtoupper($value);
+    $stmt = $pdo->prepare('SELECT * FROM dogparks WHERE dogparkname LIKE :dogparkname');
+    $stmt->bindValue(':dogparkname', "%" . $value . "%");
+    $stmt->execute();
+
+    return $stmt;
+}
 
 function emptySearch($pdo)
 {

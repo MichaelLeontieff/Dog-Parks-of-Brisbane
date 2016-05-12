@@ -470,6 +470,10 @@ emp#information {
 	color: #999696;
 }
 
+#searchmessage #redalert {
+	color: #ff6666;
+}
+
 .itemheading h3 {
 	margin: 0px;
 	color: #999696;

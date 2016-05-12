@@ -22,7 +22,8 @@
 
 					<div id="searchmessage"><h3>An empty search will return all parks, if multiple search queries are
 							set in the form, first one will be used. </h3><br>
-						<h3>If you wish to search by GeoLocation, check the box and wait for the two fields to fill
+						<h3 id="redalert">If you wish to search by GeoLocation, check the box and wait for the two
+							fields to fill
 							before submitting and the closest park will be found.</</h3></div>
 
 					<div class="searchregisterdiv">
