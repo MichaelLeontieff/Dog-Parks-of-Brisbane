@@ -19,6 +19,7 @@ function fetchVariables()
         $queryValues[0] = "GeoLocation";
         $queryValues[1] = $_GET['lat'];
         $queryValues[2] = $_GET['lon'];
+        $queryValues[3] = $_GET['geolocationrange'];
     } else {
         // if it's an empty search
         $queryValues[0] = "Empty Search";
@@ -52,7 +53,7 @@ function fetchQueryResults($pdo, $queryValues)
     } else if ($queryValues[0] == "Rating") {
         $result = searchByRating($pdo, $queryValues[1]);
     } else if ($queryValues[0] == "GeoLocation") {
-        $result = searchByGeoLocation($pdo, $queryValues[1], $queryValues[2]);
+        $result = searchByGeoLocation($pdo, $queryValues[1], $queryValues[2], $queryValues[3]);
     } else if ($queryValues[0] == "Empty Search") {
         $result = emptySearch($pdo);
     }
@@ -114,37 +115,29 @@ function emptySearch($pdo)
     return $stmt;
 }
 
-function searchByGeoLocation($pdo, $lat, $lon)
+function searchByGeoLocation($pdo, $lat, $lon, $range)
 {
 
     // query for all results
     $results = emptySearch($pdo);
 
-    // for every park, find the distance from the user,
-    // record the current lowest in var to return at end
-    $shortestDistPark = 0;
-    $shortestDistParkID = 0;
-    $firstIteration = true;
+    $matchingParks = array();
+
     foreach ($results as $row) {
-        // initialise current lowest at the first park to set the distance to beat
 
         $currentParkDistance =
             LatLonDistance($lat, $lon, $row['latitude'], $row['longitude']);
 
-        if ($firstIteration) {
-            $firstIteration = false;
-            $shortestDistPark = $currentParkDistance;
-            $shortestDistParkID = $row['id'];
-        }
-
-        if ($currentParkDistance < $shortestDistPark) {
-            $shortestDistPark = $currentParkDistance;
-            $shortestDistParkID = $row['id'];
+        if ($range == 60) {
+            if ($currentParkDistance > $range) {
+                $matchingParks[] = $row;
+            }
+        } else if ($currentParkDistance < $range) {
+            $matchingParks[] = $row;
         }
 
     }
-    $GLOBALS['shortestDistParkGlobal'] = $shortestDistPark;
-    return getParkByID($pdo, $shortestDistParkID);
+    return $matchingParks;
 }
 
 function getParkByID($pdo, $id)
@@ -165,7 +158,7 @@ function getParkDistance()
 function LatLonDistance($userLat, $userLon, $parkLat, $parkLon)
 {
     // set earth radius
-    $earthRadius = 6371000;
+    $earthRadius = 6371;
 
     // convert from degrees to radians
     $userLatRad = deg2rad($userLat);

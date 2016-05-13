@@ -13,8 +13,12 @@ rating("rating", "Rating");
 
 // geolocation input field
 geoLocation("geolocation", "Use GeoLocation");
+
 geo_input_field("lat", "Latitude", "text", "geolatfield");
 geo_input_field("lon", "Longitude", "text", "geolonfield");
+
+// geolocation range input field
+selectoptional("geolocationrange", "Define Radius of GeoLocation Search");
 
 echo '<input type="submit" class="submitbutton" value="Fetch!">';
 

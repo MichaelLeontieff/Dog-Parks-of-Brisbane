@@ -34,7 +34,12 @@
 					<div class="contentheadings">
 						<h1><?php echo 'The following ' . numberResults($results) . ' park(s) were found based on ' . $queryValues[0];
 							if ($queryValues[0] == "GeoLocation") {
-								echo "<br><h1>Closest park from your location is " . getParkDistance() . " kilometres away</h1>";
+								if ($queryValues[3] == 60) {
+									echo "<br><h1>Distance selected was greater than 60 kilometres</h1>";
+								} else {
+									echo "<br><h1>Distance selected was less than " . $queryValues[3] . " kilometres</h1>";
+								}
+								
 							}
 							?></h1>
 					</div>

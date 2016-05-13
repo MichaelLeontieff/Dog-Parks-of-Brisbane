@@ -72,24 +72,40 @@ function geo_input_field($name, $label, $type, $id)
     echo '</h2>';
 }
 
+function geo_range_select_box($name, $label)
+{
+
+    selectoptional($name, $contents, $values);
+    echo '</h2>';
+}
+
 function select($name, $values)
 {
     echo "<select name=\"$name\">";
     echo '<option selected disabled>select</option>';
     foreach ($values as $value => $display) {
-        echo "<option>$display</option>";
+        echo "<option value>$display</option>";
     }
     echo '</select>';
 }
 
-function selectoptional($name, $values)
+function selectoptional($name, $label)
 {
+    $contents = array("<10km", "<20km", "<30km", "<40km", "<50km", ">50km");
+    $values = array(10, 20, 30, 40, 50, 60);
+    echo '<h2 class="subheading">';
+    label($name, $label);
+    echo '<br>';
     echo "<select name=\"$name\">";
-    echo '<option selected>all</option>';
-    foreach ($values as $value => $display) {
-        echo "<option>$display</option>";
-    }
+    echo '<option value="5" selected><5km</option>';
+    echo '<option value="10"><10km</option>';
+    echo '<option value="20"><20km</option>';
+    echo '<option value="30"><30km</option>';
+    echo '<option value="40"><40km</option>';
+    echo '<option value="50"><50km</option>';
+    echo '<option value="60" selected>>60km</option>';
     echo '</select>';
+    echo '</h2>';
 }
 
 function suburb($name, $label) {

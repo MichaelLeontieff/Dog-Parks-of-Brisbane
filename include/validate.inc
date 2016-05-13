@@ -181,8 +181,7 @@ function buildURL($field_list)
     } else if (!empty($field_list['rating'])) {
         $vars = array('rating' => $field_list['rating']);
     } else if (!empty($field_list['lat'])) {
-        echo 'this is reaching';
-        $vars = array('lat' => $field_list['lat'], 'lon' => $field_list['lon']);
+        $vars = array('lat' => $field_list['lat'], 'lon' => $field_list['lon'], 'geolocationrange' => $field_list['geolocationrange']);
     }
 
 
