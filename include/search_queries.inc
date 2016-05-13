@@ -68,6 +68,21 @@ function fetchIndividualPark($pdo, $parkid)
     return $stmt;
 }
 
+function addUser($username, $firstname, $lastname, $dob, $gender, $email, $password)
+{
+    $pdo = createConnection();
+    $passwordhash = password_hash($password, PASSWORD_DEFAULT);
+    $stmt = $pdo->prepare('INSERT INTO members VALUES (:username, :fname, :lname, :dob, :gender, :email, :password)');
+    $stmt->bindValue(':username', $username);
+    $stmt->bindValue(':fname', $firstname);
+    $stmt->bindValue(':lname', $lastname);
+    $stmt->bindValue(':dob', $dob);
+    $stmt->bindValue(':gender', $gender);
+    $stmt->bindValue(':email', $email);
+    $stmt->bindValue(':password', $passwordhash);
+    $stmt->execute();
+}
+
 function searchBySuburb($pdo, $value)
 {
     $stmt = $pdo->prepare('SELECT * FROM dogparks WHERE suburb = :suburb');

@@ -9,8 +9,10 @@ function label($name, $label)
 
 function posted_value($name)
 {
-    if (isset($_POST[$name]))
-        echo htmlspecialchars($_POST[$name]);
+    if (isset($_POST[$name])) {
+        return htmlspecialchars($_POST[$name]);
+    }
+
 }
 
 function usernamepasswordField($name, $label, $type)
@@ -109,7 +111,7 @@ function rating($name, $label) {
     echo '<h2 class="subheading">';
     label($name, $label);
     echo '<br>';
-    $array = array([1, 2, 3, 4, 5]);
+    $array = array(1, 2, 3, 4, 5);
     select("rating", $array);
     echo '</h2>';
 }
@@ -120,15 +122,17 @@ function gender($name, $label)
     echo '<h2 class="subheading">';
     label($name, $label);
     echo '<br>';
-    select("gender", ["male", "female", "other"]);
+    $array = array("male", "female", "other");
+    select("gender", $array);
     echo '</h2>';
 }
 
 function dateofbirth($name, $label)
 {
-    $months = array('None' => 'Select...', 1 => 'Jan', 2 => 'Feb', 3 => 'Mar', 4 => 'Apr', 5 => 'May', 6 => 'Jun', 7 => 'Jul', 8 => 'Aug',
+    $months = array(1 => 'Jan', 2 => 'Feb', 3 => 'Mar', 4 => 'Apr', 5 => 'May', 6 => 'Jun', 7 => 'Jul', 8 => 'Aug',
         9 => 'Sep', 10 => 'Oct', 11 => 'Nov', 12 => 'Dec');
-    $days = range(1, 31);
+    $prepend = array('01', '02', '03', '04', '05', '06', '07', '08', '09');
+    $days = array_merge($prepend, range(10, 31));
     $years = range(1900, 2016);
 
     echo '<h2 class="subheading">';

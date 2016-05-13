@@ -1,5 +1,21 @@
 <?php
 
+require_once 'include/pdo_connect.inc';
+
+
+function UsernameUnique($pdo, $username)
+{
+    $stmt = $pdo->prepare('SELECT * FROM members WHERE username = :username');
+    $stmt->bindValue(':username', $username);
+    $stmt->execute();
+
+    if ($stmt->rowCount() == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 // count errors in array
 function Counterrors($errors)
 {
@@ -51,33 +67,36 @@ function validateCount(&$errors, $field_list)
 // validate username
 function validateUsername(&$errors, $field_list, $field_name)
 {
+    $pdo = createConnection();
     $pattern = '/[a-z0-9_-]{3,16}/';
     if (!isset($field_list[$field_name]) || empty($field_list[$field_name])) {
         $errors[$field_name] = 'Username is a required field';
     } else if (!preg_match($pattern, $field_list[$field_name])) {
         $errors[$field_name] = 'Username field value is invalid, must be between 3 and 16 characters and comprised of only letters and numbers';
+    } else if (!UsernameUnique($pdo, $field_list[$field_name])) {
+        $errors[$field_name] = 'Username is already registered';
     }
 }
 
 // validate first name
 function validateFirstName(&$errors, $field_list, $field_name)
 {
-    $pattern = "/[A-Za-z]{2,}/";
+    $pattern = "/[A-Za-z]{2,21}/";
     if (!isset($field_list[$field_name]) || empty($field_list[$field_name])) {
         $errors[$field_name] = 'First Name is a required field';
     } else if (!preg_match($pattern, $field_list[$field_name])) {
-        $errors[$field_name] = 'First Name field value is invalid, must only contain letters and length must be greater than 1';
+        $errors[$field_name] = 'First Name field value is invalid, must only contain letters and length must be greater than 1 and less than 20';
     }
 }
 
 // validate last name
 function validateLastName(&$errors, $field_list, $field_name)
 {
-    $pattern = "/[A-Za-z]{2,}/";
+    $pattern = "/[A-Za-z]{2,21}/";
     if (!isset($field_list[$field_name]) || empty($field_list[$field_name])) {
         $errors[$field_name] = 'Last Name is a required field';
     } else if (!preg_match($pattern, $field_list[$field_name])) {
-        $errors[$field_name] = 'Last Name field value is invalid, must only contain letters and length must be greater than 1';
+        $errors[$field_name] = 'Last Name field value is invalid, must only contain letters and length must be greater than 1 and less than 20';
     }
 }
 

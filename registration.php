@@ -23,6 +23,9 @@
 						<form action="registration.php" method="post">
 							<?php
 							include 'include/validate.inc';
+							require_once 'include/pdo_connect.inc';
+							require_once 'include/search_queries.inc';
+
 							$errors = array();
 							if (isset($_POST['username'])) {
 
@@ -48,6 +51,13 @@
 									writeErrors($errors);
 									include 'include/registration_form.inc';
 								} else {
+									// if we reach here form is successful
+									// set values into database
+									// set dob format from 3 select to single string
+									$dob = $_POST['year'] . '-' . $_POST['month'] . '-' . $_POST['day'];
+									addUser($_POST['username'], $_POST['firstname'], $_POST['lastname'],
+										$dob, $_POST['gender'], $_POST['email'], $_POST['password']);
+									
 									echo 'form submitted successfully with no errors, welcome to Dog Parks of Brisbane!';
 								}
 							} else {
