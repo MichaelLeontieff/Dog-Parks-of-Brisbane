@@ -72,19 +72,12 @@ function geo_input_field($name, $label, $type, $id)
     echo '</h2>';
 }
 
-function geo_range_select_box($name, $label)
-{
-
-    selectoptional($name, $contents, $values);
-    echo '</h2>';
-}
-
 function select($name, $values)
 {
     echo "<select name=\"$name\">";
     echo '<option selected disabled>select</option>';
     foreach ($values as $value => $display) {
-        echo "<option value>$display</option>";
+        echo "<option>$display</option>";
     }
     echo '</select>';
 }

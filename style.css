@@ -464,6 +464,11 @@ emp#information {
 	padding: 10px 10px 10px 10px;
 }
 
+/* hide metadata on page */
+.hiddenmeta {
+	visibility: hidden;
+}
+
 #searchmessage h3 {
 	margin: 0px;
 	font-size: 14px;

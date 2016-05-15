@@ -23,6 +23,11 @@
 						// validate password
 						checkEmpty($errors, $_POST, 'givenpassword', 'Password');
 
+						if (count($errors) == 0) {
+							// check for matching user
+							matchingCredentials($errors, $_POST, 'givenusername', 'givenpassword', 'Username', 'Password');
+						}
+						
 						if ($errors) {
 							writeErrors($errors);
 							include 'include/login_form.inc';
