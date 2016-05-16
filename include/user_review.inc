@@ -11,7 +11,7 @@ function userReview($name, $rating, $comment)
 
     // meta data
 
-    echo '<div  itemscope itemtype="http://schema.org/Park">';
+    echo '<div class="hiddenmeta" itemscope itemtype="http://schema.org/Park">';
     echo '<div itemprop="review" itemscope itemtype="http://schema.org/Review">';
     echo '<meta itemprop="name">' . $rating . ' out of 5 stars</meta> -
         by <span itemprop="author">' . $name . '</span>';
