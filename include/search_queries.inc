@@ -72,16 +72,36 @@ function fetchIndividualPark($pdo, $parkid)
 function addUser($username, $firstname, $lastname, $dob, $gender, $email, $password)
 {
     $pdo = createConnection();
-    $passwordhash = password_hash($password, PASSWORD_DEFAULT);
-    $stmt = $pdo->prepare('INSERT INTO members VALUES (:username, :fname, :lname, :dob, :gender, :email, :password)');
+    $stmt = $pdo->prepare('INSERT INTO members VALUES (:username, :fname, :lname, :dob, :gender, :email, :salt, SHA2(CONCAT(:password, :salt), 0))');
     $stmt->bindValue(':username', $username);
     $stmt->bindValue(':fname', $firstname);
     $stmt->bindValue(':lname', $lastname);
     $stmt->bindValue(':dob', $dob);
     $stmt->bindValue(':gender', $gender);
     $stmt->bindValue(':email', $email);
-    $stmt->bindValue(':password', $passwordhash);
+    $stmt->bindValue(':salt', '4b3403665fea6');
+    $stmt->bindValue(':password', $password);
     $stmt->execute();
+}
+
+function addReview($username, $comment, $rating, $parkid)
+{
+    $pdo = createConnection();
+    $stmt = $pdo->prepare('INSERT INTO reviews (parkid, username, comment, rating) VALUES (:parkid, :username,:comment, :rating)');
+    $stmt->bindValue(':username', $username);
+    $stmt->bindValue(':parkid', $parkid);
+    $stmt->bindValue(':comment', $comment);
+    $stmt->bindValue(':rating', $rating);
+    $stmt->execute();
+}
+
+function getParkReviews($parkid)
+{
+    $pdo = createConnection();
+    $stmt = $pdo->prepare('SELECT * FROM reviews, members WHERE reviews.username = members.username AND parkid = :parkid ORDER BY date DESC');
+    $stmt->bindValue(':parkid', $parkid);
+    $stmt->execute();
+    return $stmt;
 }
 
 function searchBySuburb($pdo, $value)
@@ -93,9 +113,15 @@ function searchBySuburb($pdo, $value)
     return $stmt;
 }
 
-function searchByRating($value)
+function searchByRating($pdo, $queryrating)
 {
-
+    $stmt = $pdo->prepare('SELECT *, avg(rating) 
+                           FROM reviews
+                           GROUP BY parkid
+                           HAVING avg(rating) >= :queryrating');
+    $stmt->bindValue(':queryrating', $queryrating);
+    $stmt->execute();
+    return $stmt;
 }
 
 function searchByName($pdo, $value)

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -67,39 +70,51 @@
 					<div class="contentheadings">
 						<h1>Social</h1>
 					</div>
-					<div class="itemheading"><h3>Post a Review</h3></div>
+					<?php
+					if (isset($_SESSION['loggedin'])) {
+						echo '<div class="itemheading"><h3>Post a Review</h3></div>';
 
-					<div class="userreview" id="post">
-						<div class="userimage"></div>
-						<div id="centerposcomment">
-						<h3>What do you think of this Park?</h3>
-							<form action="<?php echo 'individual.php?id=' . $parkid ?>" method="post">
-								<?php
-								include 'include/validate.inc';
-								$errors = array();
-								if (isset($_POST['comment'])) {
-									// validate comment
-									validateComment($errors, $_POST, 'comment');
-									// validate rating
-									validateRating($errors, $_POST, 'rating');
+						echo '<div class="userreview" id="post">';
+						echo '<div class="userimage"></div>';
+						echo '<div id="centerposcomment">';
 
-									if ($errors) {
-										writeErrors($errors);
-										include 'include/review_form.inc';
-									} else {
-										echo 'form submitted successfully with no errors, thanks for posting!';
-									}
-								} else {
-									include 'include/review_form.inc';
-								}
-								?>
-							</form>
-						</div>
-					</div>
+						echo '<h3>What do you think of this Park?</h3>';
+						echo '<form action="' . 'individual.php?id=' . $parkid . '" method="post">';
 
-					<div class="itemheading"><h3>User Ratings</h3></div>
+						include 'include/validate.inc';
+						$errors = array();
+						if (isset($_POST['comment'])) {
+							// validate comment
+							validateComment($errors, $_POST, 'comment');
+							// validate rating
+							validateRating($errors, $_POST, 'rating');
+
+							if ($errors) {
+								writeErrors($errors);
+								include 'include/review_form.inc';
+							} else {
+								echo 'form submitted successfully with no errors, thanks for posting!';
+								// add review
+								addReview($_SESSION['username'], $_POST['comment'], $_POST['rating'], $_GET['id']);
+							}
+						} else {
+							include 'include/review_form.inc';
+						}
+
+
+						echo '</form>';
+						echo '</div>';
+						echo '</div>';
+					}
+					?>
+					
 					<?php include 'include/user_review.inc';
-					userReview("Michael Leontieff", "5", "Great Park!");
+					$result = getParkReviews($_GET['id']);
+					echo '<div class="itemheading"><h3>User Ratings | Sorted by Date</h3></div>';
+					foreach ($result as $row) {
+						userReview($row['username'], $row['comment'], $row['date'], $row['rating']);
+					}
+
 					?>
 
 					

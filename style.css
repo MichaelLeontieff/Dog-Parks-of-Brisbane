@@ -17,6 +17,19 @@ body#landingbody {
 	margin: 0px;
 }
 
+.sessionstatusmessage {
+	color: #595959;
+	text-align: center;
+	width: 500px;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.sessionstatusmessage h1 {
+	font-size: 25px;
+}
+
 body#normal  {
 	/*Scalable background image that doesn't stretch when window 
 	is non-standard aspect ratio*/
@@ -466,7 +479,8 @@ emp#information {
 
 /* hide metadata on page */
 .hiddenmeta {
-	visibility: hidden;
+	/*visibility: hidden;*/
+	font-size: 0px;
 }
 
 #searchmessage h3 {
@@ -526,7 +540,7 @@ emp#information {
 
 .contentcontainer#login {
 	opacity: 0.95;
-	margin-top: 20px;
+	margin-top: 50px;
 	margin-left: auto;
 	margin-right: auto;
 	/*specific width value is so that the login div appears to line up 

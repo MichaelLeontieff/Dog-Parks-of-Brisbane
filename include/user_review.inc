@@ -1,15 +1,16 @@
 <?php
 
-function userReview($name, $rating, $comment)
+function userReview($name, $comment, $date, $rating)
 {
     echo '<div class="userreview">';
     echo '<div class="userimage"></div>';
-    echo '<h3>' . $name . ' says...</h3>';
+    echo '<h3>' . $name . ' said on the ' . $date . '...</h3>';
     echo '<p>' . $comment . '</p>';
     echo '<p>' . $rating . ' <i>out of</i> 5 Stars</p>';
     echo '</div>';
 
     // meta data
+    // hidden through stylesheet
 
     echo '<div class="hiddenmeta" itemscope itemtype="http://schema.org/Park">';
     echo '<div itemprop="review" itemscope itemtype="http://schema.org/Review">';
