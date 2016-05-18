@@ -8,3 +8,6 @@
 session_start();
 unset($_SESSION['loggedin']);
 header("Location: http://{$_SERVER['HTTP_HOST']}/CAB230-WebDevelopmentMajorAssignment/login.php");
+/*
+ * ends the users session and redirects to splash screen
+ */

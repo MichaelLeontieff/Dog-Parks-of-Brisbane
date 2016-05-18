@@ -1,8 +1,10 @@
 <?php
-
+/*
+ * this file contains all of the PHP valdiation used
+ */
 require_once 'include/pdo_connect.inc';
 
-
+// check for unique username
 function UsernameUnique($pdo, $username)
 {
     $stmt = $pdo->prepare('SELECT * FROM members WHERE username = :username');
@@ -26,6 +28,7 @@ function Counterrors($errors)
     return $counter;
 }
 
+// write errors
 function writeErrors($errors)
 {
     $errorCount = Counterrors($errors);
@@ -37,6 +40,7 @@ function writeErrors($errors)
     echo '</h2>';
 }
 
+// count non empty
 function countNonEmpty($field_list)
 {
     $counter = 0;
@@ -159,35 +163,34 @@ function validateRating(&$errors, $field_list, $field_name)
     }
 }
 
-// construct results url to parse values to results page for sql query
+/*
+ * construct HTTP query results url to parse values to results page for sql query
+ *
+ */
 function buildURL($field_list)
 {
-
-//    $vars = array('suburb' => $field_list['suburb'],
-//        'parkname' => $field_list['parkname'],
-//        'rating' => $field_list['parkname']);
-//    $querystring = http_build_query($vars);
-//    $url = "results.php?" . $querystring;
-
     $vars = array();
 
     // check suburb
     if (!empty($field_list['suburb'])) {
         $vars = array('suburb' => $field_list['suburb']);
-
+        // check parkname
     } else if (!empty($field_list['parkname'])) {
         if ($field_list['parkname'] != 'any') {
             $vars = array('parkname' => $field_list['parkname']);
         }
+        // check rating
     } else if (!empty($field_list['rating'])) {
         $vars = array('rating' => $field_list['rating']);
+        // check geolocation
     } else if (!empty($field_list['lat'])) {
         $vars = array('lat' => $field_list['lat'], 'lon' => $field_list['lon'], 'geolocationrange' => $field_list['geolocationrange']);
     }
 
-
+    // build query string based on set fields
     $querystring = http_build_query($vars);
 
+    // return HTTP query url containing values
     return $url = "results.php?" . $querystring;
 
 }

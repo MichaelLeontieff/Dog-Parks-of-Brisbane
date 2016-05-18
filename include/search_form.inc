@@ -1,5 +1,8 @@
 <?php
 
+/*
+ * search form implementation
+ */
 require 'formelements.inc';
 
 // suburb input field

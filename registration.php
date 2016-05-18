@@ -29,6 +29,10 @@
 							$errors = array();
 							if (isset($_POST['username'])) {
 
+								/*
+								 * VALIDATION
+								 */
+
 								// username
 								validateUsername($errors, $_POST, 'username');
 								// firstname
@@ -46,7 +50,7 @@
 								// password
 								validatePassword($errors, $_POST, 'password');
 
-
+								// if errors present write them to screen and re-present form
 								if ($errors) {
 									writeErrors($errors);
 									include 'include/registration_form.inc';
@@ -61,6 +65,7 @@
 									echo 'form submitted successfully with no errors, welcome to Dog Parks of Brisbane!';
 								}
 							} else {
+								// otherwise include form again
 								include 'include/registration_form.inc';
 							}
 

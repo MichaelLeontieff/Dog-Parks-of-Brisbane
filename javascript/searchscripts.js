@@ -1,3 +1,6 @@
+/*
+ get users location
+ */
 function getLocation() {
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -6,22 +9,25 @@ function getLocation() {
 	}
 }
 
+/*
+ function to insert coordinates into form fields
+ */
 function showPosition(position) {
-
-	// distance calc //
+	// get coordinates
 	var lat1 = position.coords.latitude;
 	var lon1 = position.coords.longitude;
 
 	console.log("lat1 " + lat1);
 	console.log("lon1 " + lon1);
 
+	// insert into form fields
 	document.getElementById("geolatfield").value = lat1;
 	document.getElementById("geolonfield").value = lon1;
-	//document.getElementById("geolocationstatus").innerHTML = "Latitude: " + lat1 + "\nLongitude: " + lon1;
-
 }
-	
 
+/*
+ geolocation error checking
+ */
 function showError(error) {
 	var msg = "";
 	switch(error.code) {

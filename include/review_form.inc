@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * review form implementation
+ */
+
 include 'formelements.inc';
 
 commentField('comment');

@@ -1,5 +1,9 @@
 <?php
 require_once 'pdo_connect.inc';
+
+/*
+ * function to check password against supplied username
+ */
 function checkPassword($username, $password)
 {
     $pdo = createConnection();
@@ -15,25 +19,50 @@ function checkPassword($username, $password)
     }
 }
 
-// check if user is registered
-function matchingCredentials(&$errors, $field_list, $username_field, $password_field, $username_label, $password_label)
+/*
+ * count errors in array (redundant, keeping it anyway)
+ */
+function Counterrors($errors)
 {
-    $passwordhash = password_hash($field_list[$password_field], PASSWORD_DEFAULT);
-    $username = $field_list[$username_field];
+    $counter = 0;
+    foreach ($errors as $field => $error) {
+        $counter++;
+    }
+    return $counter;
+}
+
+/*
+ * outputs the errors residing within array into red error messages
+ */
+function writeLoginErrors($errors)
+{
+    $errorCount = Counterrors($errors);
+    echo '<h2 class="loginvalidationerror">';
+    echo '<p class="validationerrortitle">The following ' . $errorCount . ' error(s) were found:<br></p>';
+    foreach ($errors as $field => $error) {
+        echo "- $error</br>";
+    }
+    echo '</h2>';
+}
+
+/*
+ * if login fails, function checks if username exists
+ * but password isn't right or if the username doesn't exist
+ * then ouputs error messages for display
+ */
+function checkUsername(&$errors, $username)
+{
     $pdo = createConnection();
     $stmt = $pdo->prepare('SELECT * FROM members WHERE username = :username');
     $stmt->bindValue(':username', $username);
     $stmt->execute();
-    // if user doesn't exist
-    if ($stmt->rowCount() == 0) {
-        $errors[$username_field] = $username_label . ' does not match any existing user';
+    if ($stmt->rowCount() > 0) {
+        $errors['password'] = "Password doesn't match given username";
+        return true;
     } else {
-        // if user does exist but password doesn't match\
-        foreach ($stmt as $row) {
-            if ($row['password'] != $passwordhash) {
-                $errors[$password_field] = $password_label . ' does not match given username';
-            }
-        }
+        $errors['username'] = "Username doesn't exist";
+        return false;
     }
 }
+
 

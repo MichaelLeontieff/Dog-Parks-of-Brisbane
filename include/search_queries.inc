@@ -1,7 +1,15 @@
 <?php
 
+/*
+ * file contains various helper functions for the search and query process
+ */
+
 global $queryresult;
 
+/*
+ * function checks what was set in the search form and returns the corresponding
+ * variables
+ */
 function fetchVariables()
 {
     $queryValues = array();
@@ -28,6 +36,9 @@ function fetchVariables()
     return $queryValues;
 }
 
+/*
+ * counts the number of results, redundant but kept it anyway
+ */
 function numberResults($results)
 {
     $count = 0;
@@ -37,6 +48,9 @@ function numberResults($results)
     return $count;
 }
 
+/*
+ * returns single parkname from result for individual item page
+ */
 function getParkName($result)
 {
     foreach ($result as $row) {
@@ -44,6 +58,11 @@ function getParkName($result)
     }
 }
 
+/*
+ * once the variables from the search form are extracted
+ * this function co-ordinates what corresponding query to run
+ * and runs that query, output is the results table
+ */
 function fetchQueryResults($pdo, $queryValues)
 {
     if ($queryValues[0] == "Park Name") {
@@ -60,6 +79,9 @@ function fetchQueryResults($pdo, $queryValues)
     return $result;
 }
 
+/*
+ * helper method to fetch individual park by id
+ */
 function fetchIndividualPark($pdo, $parkid)
 {
     $stmt = $pdo->prepare('SELECT * FROM dogparks WHERE id = :parkid');
@@ -69,6 +91,9 @@ function fetchIndividualPark($pdo, $parkid)
     return $stmt;
 }
 
+/*
+ * function to add a user to the database, present here as it interacts with database
+ */
 function addUser($username, $firstname, $lastname, $dob, $gender, $email, $password)
 {
     $pdo = createConnection();
@@ -84,6 +109,9 @@ function addUser($username, $firstname, $lastname, $dob, $gender, $email, $passw
     $stmt->execute();
 }
 
+/*
+ * add review to database
+ */
 function addReview($username, $comment, $rating, $parkid)
 {
     $pdo = createConnection();
@@ -95,6 +123,9 @@ function addReview($username, $comment, $rating, $parkid)
     $stmt->execute();
 }
 
+/*
+ * fetches the park reviews corresponding to parkid and sorts by date
+ */
 function getParkReviews($parkid)
 {
     $pdo = createConnection();
@@ -104,6 +135,9 @@ function getParkReviews($parkid)
     return $stmt;
 }
 
+/*
+ * searches parks by suburb
+ */
 function searchBySuburb($pdo, $value)
 {
     $stmt = $pdo->prepare('SELECT * FROM dogparks WHERE suburb = :suburb');
@@ -113,17 +147,24 @@ function searchBySuburb($pdo, $value)
     return $stmt;
 }
 
+/*
+ * search by rating, returns all unique parks that have a rating equal to input
+ */
 function searchByRating($pdo, $queryrating)
 {
-    $stmt = $pdo->prepare('SELECT *, avg(rating) 
-                           FROM reviews
-                           GROUP BY parkid
-                           HAVING avg(rating) >= :queryrating');
-    $stmt->bindValue(':queryrating', $queryrating);
+    $stmt = $pdo->prepare('SELECT DISTINCT *
+                           FROM dogparks
+                           INNER JOIN reviews ON dogparks.id = reviews.parkid
+                           GROUP BY id
+                           HAVING reviews.rating = :rating');
+    $stmt->bindValue(':rating', $queryrating);
     $stmt->execute();
     return $stmt;
 }
 
+/*
+ * search by parkname
+ */
 function searchByName($pdo, $value)
 {
     $value = strtoupper($value);
@@ -134,6 +175,9 @@ function searchByName($pdo, $value)
     return $stmt;
 }
 
+/*
+ * return all results
+ */
 function emptySearch($pdo)
 {
     $stmt = $pdo->prepare('SELECT * FROM dogparks');
@@ -141,31 +185,42 @@ function emptySearch($pdo)
     return $stmt;
 }
 
+/*
+ * function to return all results that reside within given radius
+ */
 function searchByGeoLocation($pdo, $lat, $lon, $range)
 {
-
     // query for all results
     $results = emptySearch($pdo);
 
+    // create storage array
     $matchingParks = array();
 
+    // for each park
     foreach ($results as $row) {
 
+        // calculate its distance
         $currentParkDistance =
             LatLonDistance($lat, $lon, $row['latitude'], $row['longitude']);
 
+        // if radius input is for parks over 60 set row in array
         if ($range == 60) {
             if ($currentParkDistance > $range) {
                 $matchingParks[] = $row;
             }
+            // else set parks that are lower
         } else if ($currentParkDistance < $range) {
             $matchingParks[] = $row;
         }
 
     }
+    // return array of row objects to be plotted by table results builder
     return $matchingParks;
 }
 
+/*
+ * fetch park by id
+ */
 function getParkByID($pdo, $id)
 {
     $stmt = $pdo->prepare('SELECT * FROM dogparks WHERE id = :id');
@@ -174,13 +229,7 @@ function getParkByID($pdo, $id)
     return $stmt;
 }
 
-function getParkDistance()
-{
-    $distance = $GLOBALS['shortestDistParkGlobal'] / 1000;
-    return round($distance, 2, PHP_ROUND_HALF_UP);
-
-}
-
+// helper function to calculate distance between two points
 function LatLonDistance($userLat, $userLon, $parkLat, $parkLon)
 {
     // set earth radius

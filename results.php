@@ -11,7 +11,7 @@ session_start();
 	<body id="normal">
 	<?php
 	include 'include/nav_normal.inc';
-	include 'include/search_queries.inc';
+	require_once 'include/search_queries.inc';
 	require_once 'include/pdo_connect.inc';
 
 	// fetch name of field that's been queried
@@ -35,14 +35,15 @@ session_start();
 
 				<div class="contentcell">
 					<div class="contentheadings">
+						<!--Change content heading based on query type-->
 						<h1><?php echo 'The following ' . numberResults($results) . ' park(s) were found based on ' . $queryValues[0];
+							// if geolocation sreah then print subheading
 							if ($queryValues[0] == "GeoLocation") {
 								if ($queryValues[3] == 60) {
 									echo "<br><h1>Distance selected was greater than 60 kilometres</h1>";
 								} else {
 									echo "<br><h1>Distance selected was less than " . $queryValues[3] . " kilometres</h1>";
 								}
-								
 							}
 							?></h1>
 					</div>
@@ -58,7 +59,13 @@ session_start();
 					// variable scope workaround
 					$results = fetchQueryResults($pdo, $queryValues);
 					// build results table
-					buildResultsTable($results); ?>
+					if ($queryValues[0] == "GeoLocation") {
+						buildResultsTable($queryValues[0], $queryValues[1], $queryValues[2], $results);
+					} else if ($queryValues[0] == "Rating") {
+						buildResultsTable("Rating", 0, 0, $results);
+					} else {
+						buildResultsTable("", 0, 0, $results);
+					}; ?>
 					
 				</div>
 			</div>

@@ -20,16 +20,18 @@
 						<h1>Search Attributes</h1>
 					</div>
 
+					<!--search message sub heading div-->
 					<div id="searchmessage"><h3>An empty search will return all parks, if multiple search queries are
 							set in the form, first one will be used. </h3><br>
 						<h3 id="redalert">If you wish to search by GeoLocation, check the box and wait for the two
 							fields to fill
-							before submitting and the closest park will be found.</</h3></div>
+							before submitting and the closest park will be found.</h3></div>
 
 					<div class="searchregisterdiv">
 
 						<form action="search.php" method="post">
 							<?php
+							// include search form, no php validation is done as no input-breaking cases are possible
 							include 'include/validate.inc';
 
 							if (count($_POST) > 0) {

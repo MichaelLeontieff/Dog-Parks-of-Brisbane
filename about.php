@@ -11,7 +11,7 @@ session_start();
 	<body id="normal">
 		<?php include "include/nav_normal.inc"; ?>
 		<div id="undernavnormal">
-
+			<!--Site content start-->
 			<div class="contentdivider" id="individual">
 			
 				<div id="pageheadings">
@@ -23,7 +23,7 @@ session_start();
 						<h1>Dog Parks of Brisbane</h1>
 					</div>
 						<div class="about_container">
-
+							<!--Text for about box-->
 							<div id="text">
 								<p>Brisbane has a diverse scape of recreational areas, 
 								many of which are dog friendly. Using this site, you can 

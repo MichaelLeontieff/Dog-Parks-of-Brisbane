@@ -1,10 +1,8 @@
 <?php
+//handle session starting and login
 include 'include/checker.inc';
-//require_once 'include/validate.inc';
-//$errors = array();
-//$firstrun = false;
+$errors = array();
 if (isset($_POST['login'])) {
-	//$firstrun = true;
 	if (checkPassword($_POST['username'], $_POST['password'])) {
 		session_start();
 		$_SESSION['loggedin'] = true;
@@ -12,23 +10,17 @@ if (isset($_POST['login'])) {
 		header("Location: http://{$_SERVER['HTTP_HOST']}/CAB230-WebDevelopmentMajorAssignment/login.php");
 		exit();
 	} else {
-		//$errors[] = "Password doesn't match username";
+		//username present but wrong password
+		//username not present
+		checkUsername($errors, $_POST['username']);
+
 		include 'include/login_form.inc';
 		//writeErrors($errors);
+		writeLoginErrors($errors);
 	}
+
 } else {
-
-	// validate username
-	//checkEmpty($errors, $_POST, 'username', 'Username');
-	// validate password
-	//checkEmpty($errors, $_POST, 'password', 'Password');
-
 	include 'include/login_form.inc';
-	//if ($firstrun) {
-	//	writeErrors($errors);
-	//}
-
-	//$firstrun = true;
 } ?>
 <!DOCTYPE html>
 <html>
@@ -39,35 +31,8 @@ if (isset($_POST['login'])) {
 	<body id="landingbody">
 		<?php include 'include/nav_landing.inc'; ?>
 		<div class="undernav">
-			<!--			<div class="registrationheading">-->
-			<!--				<h3>Your Portal to the best <b>Dog Parks</b> <i>of</i></h3>-->
-			<!--				<h1>BRISBANE</h1>-->
-			<!--			</div>-->
-			<!--			<div class="contentcontainer" id="login">-->
-			<!---->
-			<!--				<form class="signin" action="index.php" method="post">-->
-			<!--					--><?php
-			//					include 'include/validate.inc';
-			//					$errors = array();
-			//					if (isset($_POST['username'])) {
-			//						// validate username
-			//						checkEmpty($errors, $_POST, 'username', 'Username');
-			//						// validate password
-			//						checkEmpty($errors, $_POST, 'password', 'Password');
-			//
-			//						if ($errors) {
-			//							writeErrors($errors);
-			//							include 'include/login_form.inc';
-			//						}
-			//
-			//					} else {
-			//						include 'include/login_form.inc';
-			//					}
-			//					?>
-			<!--				</form>-->
-			<!---->
-			<!--					-->
-			<!--			</div>-->
+			<!--Site content start-->
+
 	
 		<!--FOOTER-->
 		<?php include 'include/footer_landing.inc'; ?>

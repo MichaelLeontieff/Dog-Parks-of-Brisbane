@@ -1,3 +1,4 @@
+<!--the entire login form-->
 <?php
 include_once 'bannerheading.inc';
 include 'formelements.inc';

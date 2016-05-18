@@ -1,3 +1,4 @@
+/*defining globals as development started in safari which has stupid color correction*/
 html *
 {  
    font-family: Helvetica, arial !important;
@@ -5,6 +6,7 @@ html *
    -webkit-font-smoothing: antialiased;
 }
 
+/* body styling for the landing page */
 body#landingbody {
 	/*Scalable background image that doesn't stretch when window 
 	is non-standard aspect ratio*/
@@ -17,6 +19,7 @@ body#landingbody {
 	margin: 0px;
 }
 
+/* login screen php errors */
 .sessionstatusmessage {
 	color: #595959;
 	text-align: center;
@@ -345,7 +348,6 @@ emp#information {
 }
 
 .contentheadings {
-	margin: none;
 	width: 896px;
 	background-color: #6fdc6f;
 	vertical-align: middle;
@@ -420,6 +422,20 @@ emp#information {
 	margin-bottom: 10px;
 	font-size: 12px;
 	font-weight: bolder;
+}
+
+.loginvalidationerror {
+	border-radius: 6px;
+	color: #FFFFFF;
+	text-align: left;
+	background-color: #ff6666;
+	padding: 10px 10px 10px 10px;
+	margin-bottom: 10px;
+	font-size: 12px;
+	font-weight: bolder;
+	width: 260px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .formsubmitmessage {

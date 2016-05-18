@@ -2,6 +2,10 @@
 Initialise map object and marker corresponding to lat lon of park
  */
 
+/*
+ function to extract parknames from rendered parkinfotable
+ used to create named map markers for the google map
+ */
 function getName() {
     var refTab = document.getElementById("parkinfotable")
     for (var i = 0; row = refTab.rows[i]; i++) {
@@ -15,6 +19,9 @@ function getName() {
     }
 }
 
+/*
+ function to extract latitude from rendered parkinfotable
+ */
 function getLatitude() {
     var refTab = document.getElementById("parkinfotable")
     for (var i = 0; row = refTab.rows[i]; i++) {
@@ -28,6 +35,9 @@ function getLatitude() {
     }
 }
 
+/*
+ function to extract longitude from rendered parkinfotable
+ */
 function getLongitude() {
     var refTab = document.getElementById("parkinfotable")
     for (var i = 0; row = refTab.rows[i]; i++) {
@@ -41,43 +51,37 @@ function getLongitude() {
     }
 }
 
-// function initialize() {
-//
-//     var mapOptions = {zoom: 15, center: new google.maps.LatLng(-27.38123113, 153.0436597)};
-//
-//     var map = new google.maps.Map(document.getElementById("locationmap"), mapOptions);
-//
-//     var marker;
-//
-//     marker = new google.maps.Marker({
-//         position: new google.maps.LatLng(-27.38123113, 153.0436597), map: map, title: 'Dog Park'
-//     });
-// }
-
+/*
+ function that initialises the Google Map and it's required objects such as map markers
+ */
 function initialize() {
+    // create map object
     var mapOptions = {
         zoom: 17
     }
     var map = new google.maps.Map(document.getElementById("locationmap"), mapOptions);
     var marker;
 
+    // fetch parameters
     var latitude = getLatitude();
     var longitude = getLongitude();
     var name = getName();
 
-
+    // set bounds to auto-centre the map around markers
     var infowindow = new google.maps.InfoWindow();
     var bounds = new google.maps.LatLngBounds();
 
-
+    // create single marker to plot
     marker = new google.maps.Marker({
         position: new google.maps.LatLng(latitude, longitude),
         map: map,
         title: 'Dog Park'
     });
 
+    // extend bounds to account for previously created marker
     bounds.extend(marker.position);
 
+    // add click listener
     google.maps.event.addListener(marker, 'click', (function (marker) {
         return function () {
             infowindow.setContent(name);
@@ -85,8 +89,10 @@ function initialize() {
         }
     })(marker));
 
+    // fit map according to bounds
     map.fitBounds(bounds);
 
+    // initialise listener
     var listener = google.maps.event.addListener(map, "idle", function () {
         map.setZoom(17);
         google.maps.event.removeListener(listener);
@@ -95,7 +101,7 @@ function initialize() {
 }
 
 /*
-Load script
+ Load script and api
  */
 function loadScript() {
     var script = document.createElement("script");

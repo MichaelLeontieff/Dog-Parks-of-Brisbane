@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Registration form complete with HTML5 validation pattern integration
+ */
+
 require 'include/formelements.inc';
 
 $commonRegexTwoCharsAlpha = "[A-Za-z]{2,}";

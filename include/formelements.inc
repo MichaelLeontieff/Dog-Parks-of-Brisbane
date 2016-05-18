@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * This PHP file defines the form elements that comprise the user input
+ * forms, individual commenting isn't needed as this is pretty self-explanatory
+ */
+
 require_once 'pdo_connect.inc';
 
 function label($name, $label)
 {
-    echo "<label for=" . $name . ">" . $label . ":</label>";
+    echo '<label>' . $label . ':</label>';
 }
 
 function posted_value($name)
@@ -75,7 +80,7 @@ function geo_input_field($name, $label, $type, $id)
 function select($name, $values)
 {
     echo "<select name=\"$name\">";
-    echo '<option selected disabled>select</option>';
+    echo '<option selected disabled>Select</option>';
     foreach ($values as $value => $display) {
         echo "<option>$display</option>";
     }
@@ -90,13 +95,13 @@ function selectoptional($name, $label)
     label($name, $label);
     echo '<br>';
     echo "<select name=\"$name\">";
-    echo '<option value="5" selected><5km</option>';
-    echo '<option value="10"><10km</option>';
-    echo '<option value="20"><20km</option>';
-    echo '<option value="30"><30km</option>';
-    echo '<option value="40"><40km</option>';
-    echo '<option value="50"><50km</option>';
-    echo '<option value="60" selected>>60km</option>';
+    echo '<option value="5" selected>&lt;5km</option>';
+    echo '<option value="10">&lt;10km</option>';
+    echo '<option value="20">&lt;20km</option>';
+    echo '<option value="30">&lt;30km</option>';
+    echo '<option value="40">&lt;40km</option>';
+    echo '<option value="50">&lt;50km</option>';
+    echo '<option value="60">&gt;60km</option>';
     echo '</select>';
     echo '</h2>';
 }
@@ -157,7 +162,7 @@ function geoLocation($name, $label)
 {
     echo '<h2 class="subheading">';
     label($name, $label);
-    echo "<input type=\"checkbox\" default=\"unchecked\" onclick=\"getLocation()\" name=\"$name\" value=\"yes\">Yes<br>";
+    echo "<input type=\"checkbox\" onclick=\"getLocation()\" name=\"$name\" value=\"yes\">Yes<br>";
     echo '<br>';
     echo '<a onclick="getLocation()" id="geolocationstatus"></a></h2>';
 }
@@ -188,9 +193,9 @@ function radioRating($name)
     echo "<label>Rating: </label>";
     for ($i = 1; $i <= 5; $i++) {
         if ($value == $i) {
-            echo '<input id="rating1" type="radio" name="rating" value=' . $i . ' checked required>';
+            echo '<input id="rating' . $i . '" type="radio" name="rating" value=' . $i . ' checked required>';
         } else {
-            echo '<input id="rating1" type="radio" name="rating" value=' . $i . ' required>';
+            echo '<input id="rating' . $i . '" type="radio" name="rating" value=' . $i . ' required>';
         }
         echo '<label for="rating1">' . $i . '</label>';
     }

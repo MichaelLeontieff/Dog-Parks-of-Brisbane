@@ -70,6 +70,7 @@ session_start();
 					<div class="contentheadings">
 						<h1>Social</h1>
 					</div>
+					<!--THE PHP CODE BELOW RENDERS THE REVIEW FORM ONLY IF A USER IS LOGGED IN-->
 					<?php
 					if (isset($_SESSION['loggedin'])) {
 						echo '<div class="itemheading"><h3>Post a Review</h3></div>';
@@ -88,7 +89,7 @@ session_start();
 							validateComment($errors, $_POST, 'comment');
 							// validate rating
 							validateRating($errors, $_POST, 'rating');
-
+							// if there's errors
 							if ($errors) {
 								writeErrors($errors);
 								include 'include/review_form.inc';
@@ -107,7 +108,8 @@ session_start();
 						echo '</div>';
 					}
 					?>
-					
+
+					<!--RENDER USER REVIEWS-->
 					<?php include 'include/user_review.inc';
 					$result = getParkReviews($_GET['id']);
 					echo '<div class="itemheading"><h3>User Ratings | Sorted by Date</h3></div>';

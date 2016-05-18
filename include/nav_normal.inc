@@ -1,3 +1,4 @@
+<!--the landing navigation differs slightly styling wise from the normal one-->
 <div class="navigation" id="normalnav">
 	<div class="home" id="normalhome">
 		<img src="images/logo_white.svg" alt="Brisbane Open Data Scheme">

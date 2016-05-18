@@ -1,5 +1,8 @@
 <?php
 
+/*
+ * Function to create PDO connection (don't repeat yourself)
+ */
 function createConnection()
 {
     $host = "fastapps04.qut.edu.au";

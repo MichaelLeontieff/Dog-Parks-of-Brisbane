@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * user review function that creates user review from table data and creates
+ * required microdata
+ */
 function userReview($name, $comment, $date, $rating)
 {
     echo '<div class="userreview">';
@@ -14,16 +18,16 @@ function userReview($name, $comment, $date, $rating)
 
     echo '<div class="hiddenmeta" itemscope itemtype="http://schema.org/Park">';
     echo '<div itemprop="review" itemscope itemtype="http://schema.org/Review">';
-    echo '<meta itemprop="name">' . $rating . ' out of 5 stars</meta> -
-        by <span itemprop="author">' . $name . '</span>';
+    echo '<p itemprop="name">' . $rating . ' out of 5 stars</p>
+            <p itemprop="author">' . $name . '</p>';
 
     echo '<div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">';
-    echo '<span itemprop="ratingValue">' . $rating . '</span>';
-    echo '<span itemprop="bestRating">5</span>';
-    echo '<span itemprop="worstRating">1</span>';
+    echo '<p itemprop="ratingValue">' . $rating . '</p>';
+    echo '<p itemprop="bestRating">5</p>';
+    echo '<p itemprop="worstRating">1</p>';
     echo '</div>';
 
-    echo '<span itemprop="description">' . $comment . '</span>';
+    echo '<p itemprop="description">' . $comment . '</p>';
     echo '</div>';
     echo '</div>';
 
