@@ -14,9 +14,8 @@ function initialize() {
   var longitude = getLongitude();
   var name = getName();
   var id = getID();
-
+  console.log(id[0], id[1]);
   var labels = 1;
-
   // create bounds to auto-center map on markers
   var infowindow = new google.maps.InfoWindow();
   var bounds = new google.maps.LatLngBounds();
@@ -27,17 +26,20 @@ function initialize() {
     marker = new google.maps.Marker({
     position: new google.maps.LatLng(latitude[i], longitude[i]),
       map: map,
-      label: labels.toString(),
       title: 'Dog Park'
     });
 
     // extend bounds
     bounds.extend(marker.position);
 
+    // create link inside infowindow
+    var preceed = '<a href="individual.php?id=';
+    var postceed = '">Link to Individual Park Page</a>';
+
     // add listener
     google.maps.event.addListener(marker, 'click', (function (marker, i) {
       return function () {
-        infowindow.setContent(name[i]);
+        infowindow.setContent(name[i] + '<br>' + preceed + id[i] + postceed);
         infowindow.open(map, marker);
       }
     })(marker, i));

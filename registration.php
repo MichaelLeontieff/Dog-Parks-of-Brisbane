@@ -43,8 +43,13 @@
 								validateDateofBirth($errors, $_POST, 'day');
 								validateDateofBirth($errors, $_POST, 'month');
 								validateDateofBirth($errors, $_POST, 'year');
+								validateDateofBirthLeapYears($errors, $_POST, 'birthday');
 								// gender
 								validateGender($errors, $_POST, 'gender');
+								// validate pet id
+								validatepetid($errors, $_POST, 'petid');
+								// general location checkbox validation
+								validateCheckboxLocation($errors, $_POST);
 								// email
 								validateEmail($errors, $_POST, 'email');
 								// password
@@ -58,9 +63,15 @@
 									// if we reach here form is successful
 									// set values into database
 									// set dob format from 3 select to single string
+									$checkbox;
+									if ($_POST['checkyes']) {
+										$checkbox = 'yes';
+									} else {
+										$checkbox = 'no';
+									}
 									$dob = $_POST['year'] . '-' . $_POST['month'] . '-' . $_POST['day'];
 									addUser($_POST['username'], $_POST['firstname'], $_POST['lastname'],
-										$dob, $_POST['gender'], $_POST['email'], $_POST['password']);
+										$dob, $_POST['gender'], $_POST['email'], $_POST['password'], $_POST['petid'], $checkbox);
 									
 									echo 'form submitted successfully with no errors, welcome to Dog Parks of Brisbane!';
 								}

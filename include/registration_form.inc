@@ -10,6 +10,7 @@ $commonRegexTwoCharsAlpha = "[A-Za-z]{2,}";
 $commonRegexUsername = "[a-z0-9_-]{3,16}";
 $commonRegexEmail = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$";
 $commonRegexPassword = ".{6,}";
+$numericRegex10Char = "[0-9]{10}";
 
 $TwoCharsAlphaTitle = "must contain no numbers and be at least 2 letters long";
 $UsernameTitle = "";
@@ -23,11 +24,17 @@ input_field("firstname", "First Name", $commonRegexTwoCharsAlpha, "First Name $T
 // Last Name input field
 input_field("lastname", "Last Name", $commonRegexTwoCharsAlpha, "Last Name" . $TwoCharsAlphaTitle, "text");
 
+// Pet ID Number input field
+input_field("petid", "Pet ID Number (10 numeric digits)", $numericRegex10Char, "Pet ID must be 10 digits and contain only numbers", "text");
+
 // Date of Birth input field
-dateofbirth("birthday", "Date of Birth");
+dateofbirth("birthday", "Date of Birth (day/month/year)");
 
 // Gender input field
-gender("gender", "Gender");
+genderradiobutton("gender", "Gender");
+
+// Preferred park input field
+usercitycheckbox("location", "Do you live in Brisbane?");
 
 // Email input field
 input_field("email", "Email Address", $commonRegexEmail, "You must enter a valid email address", "email");

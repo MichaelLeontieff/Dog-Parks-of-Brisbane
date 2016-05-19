@@ -52,6 +52,7 @@ function writeLoginErrors($errors)
  */
 function checkUsername(&$errors, $username)
 {
+    $username = htmlspecialchars($username);
     $pdo = createConnection();
     $stmt = $pdo->prepare('SELECT * FROM members WHERE username = :username');
     $stmt->bindValue(':username', $username);

@@ -94,10 +94,10 @@ function fetchIndividualPark($pdo, $parkid)
 /*
  * function to add a user to the database, present here as it interacts with database
  */
-function addUser($username, $firstname, $lastname, $dob, $gender, $email, $password)
+function addUser($username, $firstname, $lastname, $dob, $gender, $email, $password, $petid, $location)
 {
     $pdo = createConnection();
-    $stmt = $pdo->prepare('INSERT INTO members VALUES (:username, :fname, :lname, :dob, :gender, :email, :salt, SHA2(CONCAT(:password, :salt), 0))');
+    $stmt = $pdo->prepare('INSERT INTO members VALUES (:username, :fname, :lname, :dob, :gender, :email, :salt, SHA2(CONCAT(:password, :salt), 0), :petid, :location)');
     $stmt->bindValue(':username', $username);
     $stmt->bindValue(':fname', $firstname);
     $stmt->bindValue(':lname', $lastname);
@@ -106,6 +106,8 @@ function addUser($username, $firstname, $lastname, $dob, $gender, $email, $passw
     $stmt->bindValue(':email', $email);
     $stmt->bindValue(':salt', '4b3403665fea6');
     $stmt->bindValue(':password', $password);
+    $stmt->bindValue(':petid', $petid);
+    $stmt->bindValue(':location', $location);
     $stmt->execute();
 }
 

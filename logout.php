@@ -6,8 +6,9 @@
  * Time: 2:04 PM
  */
 session_start();
+require_once 'include/php_header_location_info.inc';
 unset($_SESSION['loggedin']);
-header("Location: http://{$_SERVER['HTTP_HOST']}/CAB230-WebDevelopmentMajorAssignment/login.php");
+header($header_location_string);
 /*
  * ends the users session and redirects to splash screen
  */

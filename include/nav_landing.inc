@@ -7,6 +7,12 @@
 	<div class="aboutsocial" id="aboutsociallanding">
 		<a href="about.php">About Us</a>
 		<a href="search.php">Search</a>
-		<a href="index.php">Login</a>
+		<?php
+		if (!isset($_SESSION['loggedin'])) {
+			echo '<a href="index.php">Login</a>';
+		} else if (isset($_SESSION['loggedin'])) {
+			echo '<a href="logout.php">Logout</a>';
+		}
+		?>
 	</div>
 </div>

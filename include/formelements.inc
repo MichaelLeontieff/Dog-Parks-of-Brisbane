@@ -20,7 +20,7 @@ function posted_value($name)
 
 }
 
-function usernamepasswordField($name, $label, $type)
+function usernameField($name, $label, $type)
 {
     if (isset($_POST[$name])) {
         $value = htmlspecialchars($_POST[$name]);
@@ -29,6 +29,18 @@ function usernamepasswordField($name, $label, $type)
     }
     echo '<h1>' . $label . '</h1>';
     echo "<input type=\"$type\" value=\"$value\" name=\"$name\" required/><br>";
+
+}
+
+function passwordField($name, $label, $type)
+{
+    if (isset($_POST[$name])) {
+        $value = htmlspecialchars($_POST[$name]);
+    } else {
+        $value = "";
+    }
+    echo '<h1>' . $label . '</h1>';
+    echo "<input type=\"password\" value=\"$value\" name=\"$name\" required/><br>";
 
 }
 
@@ -141,10 +153,30 @@ function gender($name, $label)
     echo '</h2>';
 }
 
+function genderradiobutton($name, $label)
+{
+    echo '<h2 class="subheading">';
+    label($name, $label);
+    echo '<br>';
+    echo "<input type=\"radio\" name=\"$name\" value=\"Male\" required>Male";
+    echo "<input type=\"radio\" name=\"$name\" value=\"Female\">Female";
+    echo "<input type=\"radio\" name=\"$name\" value=\"Other\">Other";
+    echo '</h2>';
+}
+
+function usercitycheckbox($name, $label)
+{
+    echo '<h2 class="subheading">';
+    label($name, $label);
+    echo '<br>';
+    echo "<input type=\"checkbox\" name=\"checkyes\" value=\"yes\">Yes";
+    echo "<input type=\"checkbox\" name=\"checkno\" value=\"no\">No";
+    echo '</h2>';
+}
+
 function dateofbirth($name, $label)
 {
-    $months = array(1 => 'Jan', 2 => 'Feb', 3 => 'Mar', 4 => 'Apr', 5 => 'May', 6 => 'Jun', 7 => 'Jul', 8 => 'Aug',
-        9 => 'Sep', 10 => 'Oct', 11 => 'Nov', 12 => 'Dec');
+    $months = range(1, 12);
     $prepend = array('01', '02', '03', '04', '05', '06', '07', '08', '09');
     $days = array_merge($prepend, range(10, 31));
     $years = range(1900, 2016);

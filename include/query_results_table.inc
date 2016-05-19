@@ -6,7 +6,7 @@ function buildResultsTable($type, $lat, $lon, $results)
     $labelmarker = 1;
 
     echo '<table id="tableresults">';
-    echo '<tr><th>Marker</th><th>Dog Park Name</th><th>Street</th><th>Suburb</th>' .
+    echo '<tr><th>ID</th><th>Dog Park Name</th><th>Street</th><th>Suburb</th>' .
         '<th>Park Area</th><th>Latitude</th><th>Longitude</th>';
     if ($type == "GeoLocation") {
         echo '<th>Distance</th>';
@@ -19,7 +19,7 @@ function buildResultsTable($type, $lat, $lon, $results)
     foreach ($results as $park) {
         echo '<tr>';
         echo '<td>';
-        echo $labelmarker;
+        echo $park['id'];
         echo '</td><td>';
         echo $park['dogparkname'];
         echo '</td><td>';
@@ -34,7 +34,7 @@ function buildResultsTable($type, $lat, $lon, $results)
         echo $park['longitude'];
         echo '</td><td>';
         if ($type == "GeoLocation") {
-            echo LatLonDistance($lat, $lon, $park['latitude'], $park['longitude']);
+            echo '' . round(LatLonDistance($lat, $lon, $park['latitude'], $park['longitude'])) . 'km';
             echo '</td><td>';
         } else if ($type == "Rating") {
             echo $park['rating'];

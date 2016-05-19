@@ -105,11 +105,48 @@ function validateLastName(&$errors, $field_list, $field_name)
     }
 }
 
+// validate petID
+function validatepetid(&$errors, $field_list, $field_name)
+{
+    $pattern = "/[0-9]{10}/";
+    if (!isset($field_list[$field_name]) || empty($field_list[$field_name])) {
+        $errors[$field_name] = 'Pet ID is a required field';
+    } else if (!preg_match($pattern, $field_list[$field_name])) {
+        $errors[$field_name] = 'Pet ID field value is invalid, must only contain numbers of exactly 10 digits';
+    }
+}
+
 // validate dob
 function validateDateofBirth(&$errors, $field_list, $field_name)
 {
     if (!isset($field_list[$field_name]) || empty($field_list[$field_name])) {
-        $errors[$field_name] = 'Birthday is a required field';
+        $errors[$field_name] = 'Birthday: ' . $field_name . ' is a required field';
+    }
+}
+
+// validate dob
+function validateCheckboxLocation(&$errors, $field_list)
+{
+    if (empty($field_list['checkyes']) && empty($field_list['checkno'])) {
+        $errors['checkbox'] = "In Brisbane is a required field";
+    } else if (!empty($field_list['checkyes']) && !empty($field_list['checkno'])) {
+        $errors['checkbox'] = "Cannot check more than one box for 'Lives In Brisbane'";
+    }
+
+}
+
+// validate if leap year
+function validateDateofBirthLeapYears(&$errors, $field_list, $field_name)
+{
+
+    if (isset($field_list[$field_name]) || !empty($field_list[$field_name])) {
+        $day = intval($field_list['day']);
+        $month = intval($field_list['month']);
+        $year = intval($field_list['year']);
+
+        if (!checkdate($month, $day, $year)) {
+            $errors[$field_name] = "Date is invalid";
+        }
     }
 }
 
