@@ -24,7 +24,7 @@ body#landingbody {
 	color: #595959;
 	text-align: center;
 	width: 500px;
-	margin-top: 20px;
+	margin-top: 50px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -434,6 +434,7 @@ emp#information {
 	font-size: 12px;
 	font-weight: bolder;
 	width: 260px;
+	margin-top: 10px;
 	margin-left: auto;
 	margin-right: auto;
 }

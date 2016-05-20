@@ -21,27 +21,13 @@ if (isset($_POST['login'])) {
 		include 'include/login_form.inc';
 		//writeErrors($errors);
 		writeLoginErrors($errors);
+		echo '</body>';
+		echo '</html>';
 	}
 
 } else {
 	include 'include/login_form.inc';
 } ?>
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Dog Parks of Brisbane</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
-	</head>
-	<body id="landingbody">
-		<?php include 'include/nav_landing.inc'; ?>
-		<div class="undernav">
-			<!--Site content start-->
+
 
 	
-		<!--FOOTER-->
-		<?php include 'include/footer_landing.inc'; ?>
-
-		<!--END CONTENT-->
-		</div>
-	</body>
-</html>

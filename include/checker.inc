@@ -37,12 +37,12 @@ function Counterrors($errors)
 function writeLoginErrors($errors)
 {
     $errorCount = Counterrors($errors);
-    echo '<h2 class="loginvalidationerror">';
+    echo '<div class="loginvalidationerror">';
     echo '<p class="validationerrortitle">The following ' . $errorCount . ' error(s) were found:<br></p>';
     foreach ($errors as $field => $error) {
-        echo "- $error</br>";
+        echo "- $error<br>";
     }
-    echo '</h2>';
+    echo '</div>';
 }
 
 /*

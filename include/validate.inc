@@ -32,12 +32,12 @@ function Counterrors($errors)
 function writeErrors($errors)
 {
     $errorCount = Counterrors($errors);
-    echo '<h2 class="validationerror">';
+    echo '<div class="validationerror">';
     echo '<p class="validationerrortitle">The following ' . $errorCount . ' error(s) were found:<br></p>';
     foreach ($errors as $field => $error) {
-        echo "- $error</br>";
+        echo "- $error<br>";
     }
-    echo '</h2>';
+    echo '</div>';
 }
 
 // count non empty
