@@ -3,6 +3,11 @@
 	<head>
 		<title>Dog Parks of Brisbane: Registration</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<!--META DATA-->
+		<meta charset="utf8"/>
+		<meta name="author" content="Brisbane City Council"/>
+		<meta name="description" content="Dog Parks of Brisbane: Registration Page"/>
+		<meta name="keywords" content="park, leash, fenced, dog, Brisbane, register, registration"/>
 	</head>
 	<body id="normal">
 		<?php include 'include/nav_normal.inc'; ?>

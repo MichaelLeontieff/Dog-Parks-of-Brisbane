@@ -7,6 +7,11 @@ session_start();
 		<title>Dog Parks of Brisbane: Search</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<script src="javascript/searchscripts.js"></script>
+		<!--META DATA-->
+		<meta charset="utf8"/>
+		<meta name="author" content="Brisbane City Council"/>
+		<meta name="description" content="Dog Parks of Brisbane: Search Page"/>
+		<meta name="keywords" content="park, leash, fenced, dog, Brisbane, search"/>
 	</head>
 	<body id="normal">
 		<?php include "include/nav_normal.inc"; ?>

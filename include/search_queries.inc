@@ -37,6 +37,16 @@ function fetchVariables()
 }
 
 /*
+ * debugging function that simply outputs contents of result query
+ */
+function outputQueryResultsColumn($results, $column)
+{
+    foreach ($results as $row) {
+        echo $row[$column];
+    }
+}
+
+/*
  * counts the number of results, redundant but kept it anyway
  */
 function numberResults($results)

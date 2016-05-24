@@ -2,60 +2,65 @@
  function that initialises the Google Map and it's required objects such as map markers
  */
 function initialize() {
-  // create map object
-  var mapOptions = {
-    zoom: 11
-  }
-  var map = new google.maps.Map(document.getElementById("resultsgooglemap"), mapOptions);
-  var marker;
+  // the google map div will not render if there's no results
+  // therefore we must check if it actually exists before initializing it
+  if (document.getElementById("resultsgooglemap") != null) {
+    // create map object
+    var mapOptions = {
+      zoom: 11
+    }
+    var map = new google.maps.Map(document.getElementById("resultsgooglemap"), mapOptions);
+    var marker;
 
-  // fetch parameters
-  var latitude = getLatitude();
-  var longitude = getLongitude();
-  var name = getName();
-  var id = getID();
-  console.log(id[0], id[1]);
-  var labels = 1;
-  // create bounds to auto-center map on markers
-  var infowindow = new google.maps.InfoWindow();
-  var bounds = new google.maps.LatLngBounds();
+    // fetch parameters
+    var latitude = getLatitude();
+    var longitude = getLongitude();
+    var name = getName();
+    var id = getID();
+    console.log(id[0], id[1]);
+    var labels = 1;
+    // create bounds to auto-center map on markers
+    var infowindow = new google.maps.InfoWindow();
+    var bounds = new google.maps.LatLngBounds();
 
-  // plot all markers from the results table, each array is of the same length and
-  // contains a value for each marker
-  for (var i = 0; i < latitude.length; i++) {
-    marker = new google.maps.Marker({
-    position: new google.maps.LatLng(latitude[i], longitude[i]),
-      map: map,
-      title: 'Dog Park'
-    });
+    // plot all markers from the results table, each array is of the same length and
+    // contains a value for each marker
+    for (var i = 0; i < latitude.length; i++) {
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(latitude[i], longitude[i]),
+        map: map,
+        title: 'Dog Park'
+      });
 
-    // extend bounds
-    bounds.extend(marker.position);
+      // extend bounds
+      bounds.extend(marker.position);
 
-    // create link inside infowindow
-    var preceed = '<a href="individual.php?id=';
-    var postceed = '">Link to Individual Park Page</a>';
+      // create link inside infowindow
+      var preceed = '<a href="individual.php?id=';
+      var postceed = '">Link to Individual Park Page</a>';
+
+      // add listener
+      google.maps.event.addListener(marker, 'click', (function (marker, i) {
+        return function () {
+          infowindow.setContent(name[i] + '<br>' + preceed + id[i] + postceed);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+
+      labels++;
+
+    }
+
+    // fit map on bounds
+    map.fitBounds(bounds);
 
     // add listener
-    google.maps.event.addListener(marker, 'click', (function (marker, i) {
-      return function () {
-        infowindow.setContent(name[i] + '<br>' + preceed + id[i] + postceed);
-        infowindow.open(map, marker);
-      }
-    })(marker, i));
-
-    labels++;
+    var listener = google.maps.event.addListener(map, "idle", function () {
+      map.setZoom(14);
+      google.maps.event.removeListener(listener);
+    });
 
   }
-
-  // fit map on bounds
-  map.fitBounds(bounds);
-
-  // add listener
-  var listener = google.maps.event.addListener(map, "idle", function () {
-    map.setZoom(14);
-    google.maps.event.removeListener(listener);
-  });
 
 }
 

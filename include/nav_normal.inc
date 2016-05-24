@@ -11,6 +11,7 @@
 		<?php
 		if (!isset($_SESSION['loggedin'])) {
 			echo '<a href="index.php">Login</a>';
+			echo '<a href="registration.php">Register</a>';
 		} else if (isset($_SESSION['loggedin'])) {
 			echo '<a href="logout.php">Logout</a>';
 		}

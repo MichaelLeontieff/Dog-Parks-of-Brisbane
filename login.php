@@ -9,6 +9,8 @@ session_start();
 <head>
     <title>Session Status</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- tell search engines not to index this page -->
+    <meta name="robots" content="noindex"/>
 </head>
 <body id="normal">
 <?php include_once 'include/bannerheading.inc' ?>

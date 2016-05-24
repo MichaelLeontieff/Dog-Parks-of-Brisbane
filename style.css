@@ -515,6 +515,10 @@ emp#information {
 	color: #999696;
 }
 
+.itemheading a {
+	color: #999696;
+}
+
 .userreview textarea {
 	margin-bottom: 10px;
 	color: #999696;
