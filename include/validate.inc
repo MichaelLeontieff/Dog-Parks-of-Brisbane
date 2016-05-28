@@ -86,7 +86,7 @@ function validateUsername(&$errors, $field_list, $field_name)
 // validate first name
 function validateFirstName(&$errors, $field_list, $field_name)
 {
-    $pattern = "/[A-Za-z]{2,21}/";
+    $pattern = "/^[A-Za-z]{2,19}$/";
     if (!isset($field_list[$field_name]) || empty($field_list[$field_name])) {
         $errors[$field_name] = 'First Name is a required field';
     } else if (!preg_match($pattern, $field_list[$field_name])) {
@@ -97,7 +97,7 @@ function validateFirstName(&$errors, $field_list, $field_name)
 // validate last name
 function validateLastName(&$errors, $field_list, $field_name)
 {
-    $pattern = "/[A-Za-z]{2,21}/";
+    $pattern = "/^[A-Za-z]{2,19}$/";
     if (!isset($field_list[$field_name]) || empty($field_list[$field_name])) {
         $errors[$field_name] = 'Last Name is a required field';
     } else if (!preg_match($pattern, $field_list[$field_name])) {
@@ -136,16 +136,14 @@ function validateCheckboxLocation(&$errors, $field_list)
 }
 
 // validate if leap year
-function validateDateofBirthLeapYears(&$errors, $field_list, $field_name)
+function validateDateofBirthLeapYears(&$errors, $field_list)
 {
-
-    if (isset($field_list[$field_name]) || !empty($field_list[$field_name])) {
+    if (!empty($field_list['day']) && !empty($field_list['month']) && !empty($field_list['year'])) {
         $day = intval($field_list['day']);
         $month = intval($field_list['month']);
         $year = intval($field_list['year']);
-
         if (!checkdate($month, $day, $year)) {
-            $errors[$field_name] = "Date is invalid";
+            $errors['dateinvalid'] = "Date is invalid, dates like the 31st of February are invalid";
         }
     }
 }
@@ -177,7 +175,7 @@ function validatePassword(&$errors, $field_list, $field_name)
     if (!isset($field_list[$field_name]) || empty($field_list[$field_name])) {
         $errors[$field_name] = 'Password is a required field';
     } else if (!preg_match($pattern, $field_list[$field_name])) {
-        $errors[$field_name] = 'Email field value is invalid, must be 6 characters or more';
+        $errors[$field_name] = 'Password value is invalid, must be 6 characters or more';
     }
 }
 

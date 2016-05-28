@@ -33,6 +33,7 @@ body#landingbody {
 	font-size: 25px;
 }
 
+/* Normal body formatting */
 body#normal  {
 	/*Scalable background image that doesn't stretch when window 
 	is non-standard aspect ratio*/
@@ -89,6 +90,7 @@ body#normal  {
 	text-decoration: none;
 }
 
+/*sub class of the navigation bar*/
 .aboutsocial {
 	padding-left: 10px;
 	padding-right: 10px;
@@ -161,7 +163,7 @@ body#normal  {
 	letter-spacing: 7px;
 }
 
-
+/*footer on landing page*/
 .footer_landing {
 
 	color: #595959;
@@ -171,6 +173,7 @@ body#normal  {
 	bottom: 0;
 }
 
+/*footer on normal pages*/
 .footer_normal {
 	font-size: 14px;
 	line-height: 5px;
@@ -215,6 +218,7 @@ body#normal  {
 	padding: 0px 0px 0px 0px;
 }
 
+/*primary content cell, the one with the green title*/
 .contentcell {
 	border-radius: 10px;
 	background-color: #FFFFFF;
@@ -226,6 +230,7 @@ body#normal  {
 
 }
 
+/*banner image and title*/
 #pageheadings {
 	background-image: url('images/heading_banner_final2.svg');
 	background-color:   #6fdc6f;
@@ -301,7 +306,7 @@ emp#information {
 
 }
 
-
+/*results table formatting*/
 #tableresults {
 	font-size: 12px;
 	width: 100%;
@@ -351,7 +356,6 @@ emp#information {
 	width: 896px;
 	background-color: #6fdc6f;
 	vertical-align: middle;
-
 	clear: both;
 	border-top-right-radius: 8px;
 	border-top-left-radius: 8px;
@@ -380,6 +384,7 @@ emp#information {
 	padding-right: 180px;
 }
 
+/*formatting for the content container for the search register div*/
 .searchregisterdiv {
 	margin-top: 40px;
 	margin-bottom: 40px;
@@ -580,6 +585,7 @@ emp#information {
 	margin: 0px;
 }
 
+/*custom form submit button*/
 #loginbutton {
 	border-radius: 15px;
 	font-size: 16px;
@@ -596,6 +602,7 @@ emp#information {
 	background-color: #0059b3;
 }
 
+/*custom register button which is applied to a link*/
 #registerbutton {
 	/*margin-top: 125px;*/
 	text-decoration: none;
@@ -617,6 +624,7 @@ emp#information {
 	background-color: #994d00;
 }
 
+/*registration heading which is reused for other purposes*/
 .registrationheading {
 	/*dark grey*/
 	color: #595959; 
@@ -642,6 +650,7 @@ emp#information {
 	padding-bottom: 20px;
 }
 
+/*formatting specific to registration form*/
 #registration form {
 	width: 300px;
 	margin-left: auto;
@@ -674,6 +683,7 @@ emp#information {
 	margin: 0px;
 }
 
+/*about box container*/
 .about_container {
 	background-image: url("images/backtest.png");
 	background-size: cover;

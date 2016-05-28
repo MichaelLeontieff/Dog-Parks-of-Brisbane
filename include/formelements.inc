@@ -91,8 +91,23 @@ function geo_input_field($name, $label, $type, $id)
 
 function select($name, $values)
 {
+    echo "<select name=\"$name\" required>";
+    if ($_POST[$name] == "") {
+        echo '<option selected disabled value="">Select</option>';
+    } else {
+        echo "<option selected value=\"$_POST[$name]\">$_POST[$name]</option>";
+    }
+
+    foreach ($values as $value => $display) {
+        echo "<option>$display</option>";
+    }
+    echo '</select>';
+}
+
+function selectnotrequired($name, $values)
+{
     echo "<select name=\"$name\">";
-    echo '<option selected disabled>Select</option>';
+    echo '<option selected disabled value="">Select</option>';
     foreach ($values as $value => $display) {
         echo "<option>$display</option>";
     }
@@ -138,7 +153,7 @@ function rating($name, $label) {
     label($name, $label);
     echo '<br>';
     $array = array(1, 2, 3, 4, 5);
-    select("rating", $array);
+    selectnotrequired("rating", $array);
     echo '</h2>';
 }
 
@@ -158,9 +173,24 @@ function genderradiobutton($name, $label)
     echo '<h2 class="subheading">';
     label($name, $label);
     echo '<br>';
-    echo "<input type=\"radio\" name=\"$name\" value=\"Male\" required>Male";
-    echo "<input type=\"radio\" name=\"$name\" value=\"Female\">Female";
-    echo "<input type=\"radio\" name=\"$name\" value=\"Other\">Other";
+    if (!isset($_POST[$name])) {
+        echo "<input type=\"radio\" name=\"$name\" value=\"Male\" required>Male";
+        echo "<input type=\"radio\" name=\"$name\" value=\"Female\">Female";
+        echo "<input type=\"radio\" name=\"$name\" value=\"Other\">Other";
+    } else if ($_POST[$name] == "Male") {
+        echo "<input type=\"radio\" name=\"$name\" value=\"Male\" required checked>Male";
+        echo "<input type=\"radio\" name=\"$name\" value=\"Female\">Female";
+        echo "<input type=\"radio\" name=\"$name\" value=\"Other\">Other";
+    } else if ($_POST[$name] == "Female") {
+        echo "<input type=\"radio\" name=\"$name\" value=\"Male\" required>Male";
+        echo "<input type=\"radio\" name=\"$name\" value=\"Female\" checked>Female";
+        echo "<input type=\"radio\" name=\"$name\" value=\"Other\">Other";
+    } else {
+        echo "<input type=\"radio\" name=\"$name\" value=\"Male\" required>Male";
+        echo "<input type=\"radio\" name=\"$name\" value=\"Female\">Female";
+        echo "<input type=\"radio\" name=\"$name\" value=\"Other\" checked>Other";
+    }
+
     echo '</h2>';
 }
 
@@ -169,8 +199,16 @@ function usercitycheckbox($name, $label)
     echo '<h2 class="subheading">';
     label($name, $label);
     echo '<br>';
-    echo "<input type=\"checkbox\" name=\"checkyes\" value=\"yes\">Yes";
-    echo "<input type=\"checkbox\" name=\"checkno\" value=\"no\">No";
+    if (isset($_POST['checkyes'])) {
+        echo "<input type=\"checkbox\" name=\"checkyes\" value=\"yes\" checked>Yes";
+        echo "<input type=\"checkbox\" name=\"checkno\" value=\"no\">No";
+    } else if (isset($_POST['checkno'])) {
+        echo "<input type=\"checkbox\" name=\"checkyes\" value=\"yes\">Yes";
+        echo "<input type=\"checkbox\" name=\"checkno\" value=\"no\" checked>No";
+    } else {
+        echo "<input type=\"checkbox\" name=\"checkyes\" value=\"yes\">Yes";
+        echo "<input type=\"checkbox\" name=\"checkno\" value=\"no\">No";
+    }
     echo '</h2>';
 }
 

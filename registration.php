@@ -48,7 +48,7 @@
 								validateDateofBirth($errors, $_POST, 'day');
 								validateDateofBirth($errors, $_POST, 'month');
 								validateDateofBirth($errors, $_POST, 'year');
-								validateDateofBirthLeapYears($errors, $_POST, 'birthday');
+								validateDateofBirthLeapYears($errors, $_POST);
 								// gender
 								validateGender($errors, $_POST, 'gender');
 								// validate pet id
@@ -69,8 +69,8 @@
 									// set values into database
 									// set dob format from 3 select to single string
 									$checkbox;
-									if ($_POST['checkyes']) {
-										$checkbox = 'yes';
+									if (isset($_POST['checkyes'])) {
+										$checkbox = $_POST['checkyes'];
 									} else {
 										$checkbox = 'no';
 									}
