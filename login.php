@@ -1,10 +1,10 @@
 <?php
 session_start();
 ?>
+<!DOCTYPE html>
 <!--THIS PAGE IS A SPLASH SCREEN INDICATING THE CURRENT STATUS OF THE SESSION
     IS CALLED DIRECTLY AFTER LOGIN AND LOGOUT SHOWING A CORRESPONDING MESSAGE
 -->
-<!DOCTYPE html>
 <html>
 <head>
     <title>Session Status</title>

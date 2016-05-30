@@ -4,7 +4,7 @@
     <title>Dog Parks of Brisbane</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <!--META DATA-->
-    <meta charset="utf8"/>
+    <meta charset="utf-8"/>
     <meta name="author" content="Brisbane City Council"/>
     <meta name="description" content="Dog Parks of Brisbane: Login Page"/>
     <meta name="keywords" content="park, leash, fenced, dog, Brisbane, Login"/>
@@ -16,6 +16,7 @@
 <!--the entire login form-->
 <?php
 include_once 'bannerheading.inc';
+echo '<div class="registrationheadingtwo"><h3>Click "Search" above to search or login below to contribute to the community!</h3></div>';
 include 'formelements.inc';
 echo '<div class="contentcontainer" id="login">';
 echo '<form class="signin" action="index.php" method="post">';

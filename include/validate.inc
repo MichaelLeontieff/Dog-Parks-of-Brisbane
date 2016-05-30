@@ -73,7 +73,7 @@ function validateCount(&$errors, $field_list)
 function validateUsername(&$errors, $field_list, $field_name)
 {
     $pdo = createConnection();
-    $pattern = '/[a-z0-9_-]{3,16}/';
+    $pattern = '/^[A-Za-z0-9]{3,16}$/';
     if (!isset($field_list[$field_name]) || empty($field_list[$field_name])) {
         $errors[$field_name] = 'Username is a required field';
     } else if (!preg_match($pattern, $field_list[$field_name])) {
@@ -108,7 +108,7 @@ function validateLastName(&$errors, $field_list, $field_name)
 // validate petID
 function validatepetid(&$errors, $field_list, $field_name)
 {
-    $pattern = "/[0-9]{10}/";
+    $pattern = "/^[0-9]{10}$/";
     if (!isset($field_list[$field_name]) || empty($field_list[$field_name])) {
         $errors[$field_name] = 'Pet ID is a required field';
     } else if (!preg_match($pattern, $field_list[$field_name])) {

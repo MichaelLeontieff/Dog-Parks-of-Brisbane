@@ -8,7 +8,7 @@ session_start();
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<script src="javascript/searchscripts.js"></script>
 		<!--META DATA-->
-		<meta charset="utf8"/>
+		<meta charset="utf-8"/>
 		<meta name="author" content=“Brisbane City Council
 		" />
 		<meta name="description" content="Dog Parks of Brisbane: About Us Page"/>

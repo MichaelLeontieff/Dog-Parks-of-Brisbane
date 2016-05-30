@@ -4,7 +4,7 @@
 		<title>Dog Parks of Brisbane: Registration</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<!--META DATA-->
-		<meta charset="utf8"/>
+		<meta charset="utf-8"/>
 		<meta name="author" content="Brisbane City Council"/>
 		<meta name="description" content="Dog Parks of Brisbane: Registration Page"/>
 		<meta name="keywords" content="park, leash, fenced, dog, Brisbane, register, registration"/>
@@ -77,8 +77,9 @@
 									$dob = $_POST['year'] . '-' . $_POST['month'] . '-' . $_POST['day'];
 									addUser($_POST['username'], $_POST['firstname'], $_POST['lastname'],
 										$dob, $_POST['gender'], $_POST['email'], $_POST['password'], $_POST['petid'], $checkbox);
-									
-									echo 'form submitted successfully with no errors, welcome to Dog Parks of Brisbane!';
+
+									echo 'form submitted successfully with no errors, welcome to Dog Parks of Brisbane!<br>
+											Click <a href="search.php">here</a> to search';
 								}
 							} else {
 								// otherwise include form again

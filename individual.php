@@ -8,7 +8,7 @@ session_start();
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<script src="javascript/individualparkscripts.js"></script>
 		<!--META DATA-->
-		<meta charset="utf8"/>
+		<meta charset="utf-8"/>
 		<meta name="author" content="Brisbane City Council"/>
 		<meta name="description" content="Dog Parks of Brisbane: Individual Item Page"/>
 		<meta name="keywords" content="park, leash, fenced, dog, Brisbane"/>

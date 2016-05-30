@@ -92,7 +92,7 @@ function geo_input_field($name, $label, $type, $id)
 function select($name, $values)
 {
     echo "<select name=\"$name\" required>";
-    if ($_POST[$name] == "") {
+    if (!isset($_POST[$name])) {
         echo '<option selected disabled value="">Select</option>';
     } else {
         echo "<option selected value=\"$_POST[$name]\">$_POST[$name]</option>";

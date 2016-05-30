@@ -566,7 +566,7 @@ emp#information {
 
 .contentcontainer#login {
 	opacity: 0.95;
-	margin-top: 50px;
+	margin-top: 10px;
 	margin-left: auto;
 	margin-right: auto;
 	/*specific width value is so that the login div appears to line up 
@@ -629,10 +629,27 @@ emp#information {
 	/*dark grey*/
 	color: #595959; 
 	text-align: center;
-	margin-top: 70px;
+	margin-top: 50px;
 	margin-right: auto;
 	margin-left: auto;
 	width: 400px;
+}
+
+.registrationheadingtwo {
+	/*dark grey*/
+	color: #595959;
+	text-align: center;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-left: auto;
+	width: 400px;
+}
+
+.registrationheadingtwo h3 {
+	letter-spacing: 3px;
+	font-size: 14px;
+	/*split text*/
+	padding-bottom: 20px;
 }
 
 .registrationheading h1 {

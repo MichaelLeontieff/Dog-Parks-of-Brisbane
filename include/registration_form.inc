@@ -6,11 +6,11 @@
 
 require 'include/formelements.inc';
 
-$commonRegexTwoCharsAlpha = "[A-Za-z]{2,}";
-$commonRegexUsername = "[a-z0-9_-]{3,16}";
+$commonRegexTwoCharsAlpha = "^[A-Za-z]{2,}$";
+$commonRegexUsername = "^[a-zA-Z0-9]{3,16}$";
 $commonRegexEmail = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$";
 $commonRegexPassword = ".{6,}";
-$numericRegex10Char = "[0-9]{10}";
+$numericRegex10Char = "^[0-9]{10}$";
 
 $TwoCharsAlphaTitle = "must contain no numbers and be at least 2 letters long";
 $UsernameTitle = "";
